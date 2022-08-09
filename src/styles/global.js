@@ -36,7 +36,7 @@ const Global = createGlobalStyle`
   }
 
   body{
-    background-color: var(--grey-0);
+    background-color: var(--gray-4);
   }
 `;
 

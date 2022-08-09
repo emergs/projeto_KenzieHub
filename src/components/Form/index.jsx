@@ -4,11 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Forms from './styles'
 import Button from '../Button';
 
-const Form = ()=>{
+const Form = ({onSubmit, children})=>{
 
   return(
-    <Forms>
-     
+    <Forms onSubmit={onSubmit}>
+      {children}
     </Forms>
   )
 }

@@ -5,13 +5,14 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 320px;
-  background-color: #121214;
+  width: 100%;
+  background-color:var(--gray-4);
   border-radius: 8px;
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 49.46px;
   padding-bottom:46px ;
+
 `;
 
 export default Container;

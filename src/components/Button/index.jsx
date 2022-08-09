@@ -1,9 +1,8 @@
-import { Children } from "react";
 import Buttons from "./styles";
 
-const Button = ({children})=>{
+const Button = ({type,onClick,children})=>{
   return(
-    <Buttons>
+    <Buttons type={type} onClick={onClick}>
       {children}
     </Buttons>
   )
