@@ -1,11 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
-  @font-face {
-    font-family:'Inter' ;
-    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-  }
-
   :root{
     --color-primary:#FF577F;
     --color-primary-focus:#FF427F;
@@ -20,12 +15,13 @@ const Global = createGlobalStyle`
     --sucess:#3FE864;
     --negative:#E83F5B;
 
-    --title1: bold 20px 'Inter' sans-serif;
-    --title2: bold 18px 'Inter' sans-serif;
-    --title3: bold 14px 'Inter' sans-serif;
-    --headline: normal 12px 'Inter' sans-serif;
-    --headline-bold: bold 12px 'Inter' sans-serif;
-    --headline-italic: italic 12px 'Inter' sans-serif;
+    --title1: 700 20px 'Inter', sans-serif;
+    --title2: bold 18px 'Inter',sans-serif;
+    --title3: bold 14px 'Inter',sans-serif;
+    --headline: normal 12px 'Inter',sans-serif;
+    --headline-bold: bold 12px 'Inter',sans-serif;
+    --headline-italic: italic 12px 'Inter',sans-serif;
+    --inputs: 400 16px 'Inter', sans-serif;
   }
   
   *{

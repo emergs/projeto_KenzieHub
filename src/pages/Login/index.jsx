@@ -6,6 +6,7 @@ import {useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import Span from "./style";
 import { useNavigate } from "react-router-dom";
+import Buttons from "../../components/Button/styles";
 
 const schema = yup.object({
   email: yup.string().required('Digite o email').email('Digite um email válido'),
@@ -39,10 +40,10 @@ const Login = () => {
         <input type="password" id="pass" placeholder="Digite sua senha" {...register('pass')} />
         <p>{errors.pass?.message}</p>
 
-        <Button type='submit' >Entrar</Button>
+        <Buttons type='submit' colorPrimary>Entrar</Buttons>
 
         <Span>Ainda não possui conta?</Span>
-        <Button type='button' onClick={()=>onClick()}>Cadastre-se</Button>
+        <Buttons type='button' onClick={()=>onClick()} gray1>Cadastre-se</Buttons>
 
       </Form>
     </Container>

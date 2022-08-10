@@ -10,6 +10,7 @@ padding-bottom: 19.96px;
 padding-left: 17.99px;
 padding-right: 14.05px;
 border-radius: 3.2px;
+box-shadow: 0px 0px 8px 2px var(--gray-2);
 
 h2{
   font:var(--title1);
@@ -18,7 +19,7 @@ h2{
 }  
 
 span{
-  font:var(--headline);
+  font:var(--headline-italic);
   color: var(--gray-0);
 }
 
@@ -34,21 +35,25 @@ input, select{
   margin-top: 17.86px;
   border-radius: 3.2px;
   border: none;
+  background-color:var(--gray-2);
+  color: var(--gray-0);
+  padding-left: 13px;
+  font:var(--inputs);
 }
 
-input:placeholder-shown{
-  padding-left: 13px;
+input::placeholder{
+  color:var(--gray-0);
 }
 
 select{
   padding-left: 13px;
 }
 
-button{
+/* button{
   margin-top: 20px;
   width: 100%;
   background-color: var(--color-primary-negative);
-}
+} */
   
 `
 export default Forms;
