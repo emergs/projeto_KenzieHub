@@ -1,6 +1,7 @@
 import Button from "../Button";
 import Headers from "./styles";
 import {useNavigate} from 'react-router-dom'
+import logo from "../../assets/Logo.svg"
 
 const Header = ()=>{
   const navigate = useNavigate()
@@ -11,7 +12,7 @@ const Header = ()=>{
 
   return(
     <Headers>
-      <h1>Logo</h1>
+      <img src={logo} alt="logo" />
       <Button type='button' onClick={()=>onClick()}>Voltar</Button>
     </Headers>
   )
