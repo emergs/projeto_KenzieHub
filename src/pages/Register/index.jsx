@@ -6,8 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm  } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
 import api from '../../services/api';
 import * as yup from "yup";
+import 'react-toastify/dist/ReactToastify.css';
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
@@ -21,7 +23,6 @@ const formSchema = yup.object({
 
 const Register = () => {
   const navigate = useNavigate()
-
   const [responseRequest, setResponseRequest] = useState(null)
 
   const {register, handleSubmit, formState:{errors}} = useForm({
@@ -37,13 +38,11 @@ const Register = () => {
       //.catch((err)=>console.log(err.response.data.message))
       .catch((err)=>setResponseRequest(err.request.status))
       //falta fazer validação
-      responseRequest === 401 ? 
-      console.log('response.message')
-      //retornar uma mensagem de erro
+      responseRequest !== 200 ? 
+      toast.error('Usuário não criado')
       :
-      console.log('response')
-      navigate('../Login', {replace:true})
-      //mensagem de sucesso
+      navigate('../login', {replace:true})
+      toast.success('Usuario criado com sucesso!')
       
   }
 
