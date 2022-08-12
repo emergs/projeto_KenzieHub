@@ -1,14 +1,17 @@
-import Button from "../../components/Button";
 import Container from "../../components/Container/styles";
 import Form from "../../components/Form"
-import * as yup from 'yup';
-import {useForm} from 'react-hook-form';
-import { yupResolver } from "@hookform/resolvers/yup";
-import Span from "./style";
-import { useNavigate } from "react-router-dom";
 import Buttons from "../../components/Button/styles";
-import api from "../../services/api"
+import { useForm } from 'react-hook-form';
 import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
+import api from "../../services/api"
+import Span from "./style";
+import * as yup from 'yup';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
+
 
 const schema = yup.object({
   email: yup.string().required('Digite o email').email('Digite um email válido'),
@@ -16,26 +19,28 @@ const schema = yup.object({
 })
 
 const Login = () => {
-  const [status,setStatus] = useState(false)
+  const [statusRequest,setStatusRequest] = useState(false)
+  const [responseRequest, setResponseRequest] = useState([])
   const navigate = useNavigate()
-  const navigateDash = useNavigate()
 
   const {register, handleSubmit, formState:{errors}} = useForm({
     resolver: yupResolver(schema)
   })
 
   const onSubmit = (data)=> {
-    //console.log(data)
     api.post('/sessions', data)
-    .then((response)=> response.status === 200 || 201 ? setStatus(true) : setStatus(false))
+    .then((response)=>setResponseRequest(response))
     .catch((err)=>console.log(err));
 
-    status === true ? navigateDash('../dashboard', {replace:true}) : console.log(status)
+    console.log(responseRequest)
+    responseRequest?.status === 200 ? 
+    toast.success('Login realizado com sucesso', navigate('../dashboard', {replace:true})) 
+    : 
+    toast.error('Dados incorretos')
   }
 
   const onClick = ()=>{
-    navigate('./Register',{replace:true})
-    console.log('clicou')
+    navigate('../register',{replace:true})
   }
 
   return(
