@@ -23,32 +23,32 @@ const formSchema = yup.object({
 
 const Register = () => {
   const navigate = useNavigate()
-  const [responseRequest, setResponseRequest] = useState(null)
 
   const {register, handleSubmit, formState:{errors}} = useForm({
     resolver: yupResolver(formSchema)
   })
 
-  const registerUser = ({email,password,name,bio,contact,course_module})=>{
-
-    api.post('/users',{
-        email,password,name,bio,contact,course_module
+  const registerUser = async({email,password,name,bio,contact,course_module})=>{
+    try {
+      const request = await api.post('/users',{email,password,name,bio,contact,course_module
       })
-      .then((response)=>setResponseRequest(response.request.status))
-      //.catch((err)=>console.log(err.response.data.message))
-      .catch((err)=>setResponseRequest(err.request.status))
-      //falta fazer validação
-      responseRequest !== 200 ? 
-      toast.error('Usuário não criado')
-      :
-      navigate('../login', {replace:true})
-      toast.success('Usuario criado com sucesso!')
-      
+      if(request){
+        navigate('../login', {replace:true},
+        toast.success('Usuario criado com sucesso!'))
+      }
+    } 
+    catch (error) {
+      toast.error(error.response.data.message)
+    }
+  }
+
+  const backToLogin = ()=>{
+    navigate('../login',{replace:true})
   }
 
   return (
     <Container>
-      <Header/>
+      <Header onClick={backToLogin}/>
       <Form onSubmit={handleSubmit(registerUser)}>
         <h2>Crie sua conta</h2>
         <span>Rápido e grátis, vamos nessa</span>
