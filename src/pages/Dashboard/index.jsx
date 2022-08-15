@@ -1,45 +1,31 @@
-import { useState, useEffect } from 'react';
-import api from '../../services/api';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Main from './styles';
 
-const Dashboard = () => {
-
-  // const [request, setRequest] = useState([])
-
-  // useEffect(()=>{
-  //   api.get('/users')
-  //   .then((response)=>{
-  //     setRequest(response.data) 
-  //   })
-  //   .catch((err)=>console.log(err))
-  // },[])
-
-  // console.log(request)
+const Dashboard = ({user, setUser}) => {
+  const navigate = useNavigate()
+  
+  const onClick = ()=>{
+    navigate('../Login', {replace:true})
+    localStorage.removeItem('@kenzieHubTOKEN')
+    localStorage.removeItem('@kenzieHubUSERID')
+    setUser('')
+  }
 
   return (
     <Main>
       <div className='navbar'>
-        <Header/>
+        <Header onClick={onClick}/>
       </div>
       <header>
-        <h1>`Olá,${}`</h1>
-        <span>kkkkk{}</span>
+        <h1>Olá, {user.name}</h1>
+        <span>{user.course_module}</span>
       </header>
       <section className='main'>
         <h2>Que pena estamos em desenvolvimento :(</h2>
         <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
       </section>
     </Main>
-      
-    
-    
-    // <ul>
-    //   {request?.map((elem) => {
-    //     return <li>{elem.name}</li>;
-    //   })}
-    // </ul>
   );
 };
 
