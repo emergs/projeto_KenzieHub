@@ -4,40 +4,41 @@ import Buttons from "../../components/Button/styles";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify'
-import api from "../../services/api"
 import Span from "./style";
 import * as yup from 'yup';
-import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from "react";
+import { UserContext } from "../../Providers/user";
 
 const schema = yup.object({
   email: yup.string().required('Digite o email').email('Digite um email válido'),
   password: yup.string().required('Digite a sua senha')
 })
 
-const Login = ({setUser}) => {
+const Login = () => {
   const navigate = useNavigate()
+  const {onSubmit} = useContext(UserContext)
 
   const {register, handleSubmit, formState:{errors}} = useForm({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = async (data)=> {
-    function validateLogin(){
-      toast.success('Login realizado com sucesso')
-      navigate('../dashboard', {replace:true})
-      setUser(request.data.user)
-      localStorage.setItem('@kenzieHubTOKEN', JSON.stringify(request.data.token))
-      localStorage.setItem('@kenzieHubUSERID', JSON.stringify(request.data.user.id))
-    }
+  // const onSubmit = async (data)=> {
+  //   function validateLogin(){
+  //     toast.success('Login realizado com sucesso')
+  //     navigate('../dashboard', {replace:true})
+  //     setUser(request.data.user)
+  //     setToken(request.data.token)
+  //     localStorage.setItem('@kenzieHubTOKEN', JSON.stringify(request.data.token))
+  //     localStorage.setItem('@kenzieHubUSERID', JSON.stringify(request.data.user.id))
+  //   }
 
-    function doNotValidateLogin(){
-      toast.error('Dados incorretos')
-    }
+  //   function doNotValidateLogin(){
+  //     toast.error('Dados incorretos')
+  //   }
 
-    const request = await api.post('/sessions', data)
-    request.status === 200 ? validateLogin() : doNotValidateLogin()
-  }
+  //   const request = await api.post('/sessions', data)
+  //   request.status === 200 ? validateLogin() : doNotValidateLogin()
+  // }
 
   const onClick = ()=>{
     navigate('../register',{replace:true})

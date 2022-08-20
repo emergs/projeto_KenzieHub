@@ -1,7 +1,7 @@
 import Container from "../../components/Container/styles";
 import Form from "../../components/Form";
 import Header from "../../components/Header";
-import Button from "../../components/Button";
+import Button from "../../components/Button/styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm  } from "react-hook-form";
 import { useState } from "react";
