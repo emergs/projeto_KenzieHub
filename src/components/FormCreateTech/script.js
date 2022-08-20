@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+  position: fixed;
+  top: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +15,7 @@ const Container = styled.div`
   padding-top: 49.46px;
   padding-bottom:46px ;
 
-  .titleTech{
+  div{
     width: 296px;
     display: flex;
     justify-content: space-between;
@@ -36,27 +38,13 @@ const Container = styled.div`
     align-items: center;
   }
 
-  .titleTech button{
+  div button{
     font-size: 100%;
     width: 15px;
     margin-right: 20px;
     background: transparent;
     border: none;
     color: var(--gray-0);
-  }
-
-  .btnGroup{
-    display: flex;
-    justify-content: space-between;
-  }
-
-
-  .btnGroup button:first-child{
-    width: 163px;
-  }
-
-  .btnGroup button:last-child{
-    width: 78px;
   }
 `
 

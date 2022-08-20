@@ -18,10 +18,10 @@ const Global = createGlobalStyle`
     --title1: 700 20px 'Inter', sans-serif;
     --title2: bold 18px 'Inter',sans-serif;
     --title3: bold 14px 'Inter',sans-serif;
-    --headline: normal 12px 'Inter',sans-serif;
+    --headline: 400 12px 'Inter',sans-serif;
     --headline-bold: bold 12px 'Inter',sans-serif;
     --headline-italic: italic 12px 'Inter',sans-serif;
-    --inputs: 400 16px 'Inter', sans-serif;
+    --inputs: 400 14px 'Inter', sans-serif;
   }
   
   *{
