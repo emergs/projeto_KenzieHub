@@ -22,24 +22,6 @@ const Login = () => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = async (data)=> {
-    function validateLogin(){
-      toast.success('Login realizado com sucesso')
-      navigate('../dashboard', {replace:true})
-      setUser(request.data.user)
-      setToken(request.data.token)
-      localStorage.setItem('@kenzieHubTOKEN', JSON.stringify(request.data.token))
-      localStorage.setItem('@kenzieHubUSERID', JSON.stringify(request.data.user.id))
-    }
-
-     function doNotValidateLogin(){
-      toast.error('Dados incorretos')
-     }
-
-     const request = await api.post('/sessions', data)
-     request.status === 200 ? validateLogin() : doNotValidateLogin()
-  }
-
   const onClick = ()=>{
     navigate('../register',{replace:true})
   }

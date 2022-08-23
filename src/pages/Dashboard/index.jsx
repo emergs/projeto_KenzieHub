@@ -34,7 +34,7 @@ Modal.setAppElement('#root');
 
 const Dashboard = () => {
   const navigate = useNavigate()
-  const {user, setUser, idTech, setIdTech, setTitleTech, titleTech} = useContext(UserContext)
+  const {user, setUser, idTech, setIdTech, setTitleTech, titleTech, loading, setLoading} = useContext(UserContext)
   const [modalCreateIsOpen, setCreateIsOpen] = useState(false);
   const [modalUpdateIsOpen, setUpdateIsOpen] = useState(false);
   const [event, setEvent] = useState()
@@ -115,6 +115,8 @@ const Dashboard = () => {
       }
     }
   }
+
+  if(loading) return <div>Carregando...</div>
 
   return (
     user ?

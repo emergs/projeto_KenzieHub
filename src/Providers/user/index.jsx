@@ -12,6 +12,7 @@ const UserProvider =({children})=>{
   const [idTech, setIdTech] = useState('');
   const [count, setCount] = useState(0)
   const [titleTech, setTitleTech] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate()
   
@@ -30,6 +31,7 @@ const UserProvider =({children})=>{
           console.error(error);
         }
       }
+      setLoading(false)
     }
 
     loadUser()
@@ -53,7 +55,7 @@ const UserProvider =({children})=>{
   }
 
   return(
-    <UserContext.Provider value={{user, setUser, onSubmit, idTech, setIdTech, setCount, count, titleTech, setTitleTech}}>
+    <UserContext.Provider value={{user, setUser, onSubmit, idTech, setIdTech, setCount, count, titleTech, setTitleTech, loading, setLoading}}>
       {children}
     </UserContext.Provider>
   )
