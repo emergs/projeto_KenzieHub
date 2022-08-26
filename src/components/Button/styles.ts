@@ -9,6 +9,6 @@ const Button = styled.button`
   width: 100%;
   color: var(--gray-0);
   font:var(--inputs);
-  background-color: ${ props => props.colorPrimary ? '#FF577f': props.gray1 ? '#869E96':'#59323f '};
+  background-color:#59323f ;
 `
 export default Button;

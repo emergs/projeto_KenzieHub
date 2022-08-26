@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Form from "../Form/styles";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,12 +9,8 @@ const Container = styled.div`
   width: 100%;
   background-color:var(--gray-4);
   border-radius: 8px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 49.46px;
-  padding-bottom:46px ;
 
-  .titleTech{
+  div{
     width: 296px;
     display: flex;
     justify-content: space-between;
@@ -36,7 +33,7 @@ const Container = styled.div`
     align-items: center;
   }
 
-  .titleTech button{
+  div button{
     font-size: 100%;
     width: 15px;
     margin-right: 20px;
@@ -44,20 +41,7 @@ const Container = styled.div`
     border: none;
     color: var(--gray-0);
   }
-
-  .btnGroup{
-    display: flex;
-    justify-content: space-between;
-  }
-
-
-  .btnGroup button:first-child{
-    width: 163px;
-  }
-
-  .btnGroup button:last-child{
-    width: 78px;
-  }
 `
-
-export default Container;
+export const FormTech = styled(Form)`
+  padding-top: 10px;
+`

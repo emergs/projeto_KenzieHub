@@ -1,15 +1,24 @@
 import Container from "../../components/Container/styles";
-import Form from "../../components/Form";
+import Form from "../../components/Form/styles";
 import Header from "../../components/Header";
 import Button from "../../components/Button/styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm  } from "react-hook-form";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
 import api from '../../services/api';
 import * as yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
+
+interface IUserRegister{
+  email: string;
+  password: string;
+  name: string;
+  confirm_password: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
@@ -24,20 +33,19 @@ const formSchema = yup.object({
 const Register = () => {
   const navigate = useNavigate()
 
-  const {register, handleSubmit, formState:{errors}} = useForm({
+  const {register, handleSubmit, formState:{errors}} = useForm<IUserRegister>({
     resolver: yupResolver(formSchema)
   })
 
-  const registerUser = async({email,password,name,bio,contact,course_module})=>{
+  const registerUser = async( data:IUserRegister)=>{
     try {
-      const request = await api.post('/users',{email,password,name,bio,contact,course_module
-      })
+      const request = await api.post('/users',data)
       if(request){
-        navigate('../login', {replace:true},
-        toast.success('Usuario criado com sucesso!'))
+        navigate('../login', {replace:true})
+        toast.success('Usuario criado com sucesso!')
       }
     } 
-    catch (error) {
+    catch (error:any) {
       toast.error(error.response.data.message)
     }
   }
@@ -75,7 +83,7 @@ const Register = () => {
 
         <label>Contato</label>
         <input placeholder='Digite aqui seu telefone' {...register("contact")}/>
-        <p>{errors.cellNumber?.message}</p>
+        <p>{errors.contact?.message}</p>
 
         <label>Selecionar</label>
         <select {...register("course_module")}>
@@ -84,7 +92,7 @@ const Register = () => {
           <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</option>
           <option value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</option>
         </select>
-        <p>{errors.cellNumber?.message}</p>
+        <p>{errors.course_module?.message}</p>
 
         <Button type='submit'>Cadastrar</Button>
       </Form>

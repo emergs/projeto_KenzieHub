@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Forms = styled.form`
+const Form = styled.form`
 width: 296px;
 background-color: var(--gray-3);
 display:flex;
@@ -56,4 +56,4 @@ select{
 } */
   
 `
-export default Forms;
+export default Form;
