@@ -2,7 +2,7 @@ import Button from "../Button/styles";
 import Headers from "./styles";
 import logo from "../../assets/Logo.svg"
 
-const Header = ({onClick})=>{
+const Header = ({onClick}:any)=>{
   return(
     <Headers>
       <div className="containerNavBar">
