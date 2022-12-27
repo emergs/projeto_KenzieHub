@@ -1,6 +1,6 @@
 Esse projeto foi desenvolvido utilizando ReactJS e Typescript.
 
-Para ver mais acesse : https://react-entrega-s2-formulario-de-cadastro-emergs.vercel.app/login
+Para ver mais acesse : https://projeto-kenzie-hub-delta.vercel.app/
 
 1 - Para utilizar o sistema digite seu usuário e senha;
 
