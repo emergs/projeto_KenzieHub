@@ -1,15 +1,13 @@
-import Button from "../Button/styles";
-import Headers from "./styles";
 import logo from "../../assets/Logo.svg"
 
 const Header = ({onClick}:any)=>{
   return(
-    <Headers>
+    <div>
       <div className="containerNavBar">
         <img src={logo} alt="logo" />
-        <Button type='button' onClick={onClick}>Voltar</Button>
+        <button type='button' onClick={onClick}>Voltar</button>
       </div>
-    </Headers>
+    </div>
   )
 }
 export default Header;

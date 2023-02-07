@@ -1,9 +1,6 @@
-import Container from "../../components/Container/styles";
-import Form from "../../components/Form/styles"
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { Span, ButtonPrimary, ButtonGray } from "./style";
 import * as yup from 'yup';
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
@@ -27,8 +24,8 @@ const Login = () => {
   }
 
   return(
-    <Container>
-      <Form onSubmit={handleSubmit(userLogin)}>
+    <div>
+      <form onSubmit={handleSubmit(userLogin)}>
         <h2>Login</h2>
 
         <label htmlFor="email">Email</label>
@@ -39,13 +36,13 @@ const Login = () => {
         <input type="password" id="pass" placeholder="Digite sua senha" {...register('password')} />
         <p>{errors.password?.message}</p>
 
-        <ButtonPrimary type='submit'>Entrar</ButtonPrimary>
+        <button type='submit'>Entrar</button>
 
-        <Span>Ainda não possui conta?</Span>
-        <ButtonGray type='button' onClick={()=>onClick()}>Cadastre-se</ButtonGray>
+        <span>Ainda não possui conta?</span>
+        <button type='button' onClick={()=>onClick()}>Cadastre-se</button>
 
-      </Form>
-    </Container>
+      </form>
+    </div>
   )
 };
 

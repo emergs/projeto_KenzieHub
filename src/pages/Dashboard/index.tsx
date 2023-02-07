@@ -1,8 +1,7 @@
 import { Navigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Modal from 'react-modal';
 import Header from '../../components/Header';
-import {Main} from './styles';
 import ModalUpdateTech from '../../components/ModalUpdateTech';
 import ModalCreateTech from '../../components/ModalCreateTech';
 import { UserContext } from '../../Providers/user';
@@ -17,7 +16,7 @@ const Dashboard = () => {
 
   return (
     user ?
-    <Main>
+    <main>
       <div className='navbar'>
         <Header onClick={deleteUserStorage}/>
       </div>
@@ -50,7 +49,7 @@ const Dashboard = () => {
         <ModalUpdateTech/>
         <ModalCreateTech/>
       </div>
-    </Main>
+    </main>
     :
     <Navigate to='/login' replace />
     

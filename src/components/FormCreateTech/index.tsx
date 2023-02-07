@@ -3,11 +3,9 @@ import { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { UserContext } from "../../Providers/user";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container, FormTech } from './script';
 import api from "../../services/api";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
-import { ButtonPrimary } from '../../pages/Login/style';
 
 interface ICreateTech{
   title: string,
@@ -21,7 +19,7 @@ const schema = yup.object({
 
 const FormCreateTech = ()=>{
   const {addCount, closeModalCreate} = useContext(UserContext)
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const {register, handleSubmit, formState:{errors}} = useForm<ICreateTech>({
     resolver: yupResolver(schema)
   });
@@ -46,12 +44,12 @@ const FormCreateTech = ()=>{
   }
 
   return(
-    <Container>
+    <div>
       <div>
         <h2>Cadastrar Tecnologia</h2>
         <button onClick={()=>closeModalCreate()}>X</button>
       </div>
-      <FormTech onSubmit={handleSubmit(createTech)}>
+      <form onSubmit={handleSubmit(createTech)}>
         <label>Nome</label>
         <input placeholder='Digite o nome da tecnologia ' {...register("title")}/>
         <p>{errors.title?.message}</p>
@@ -62,9 +60,9 @@ const FormCreateTech = ()=>{
           <option value="intermediario">Intermediário</option>
           <option value="avancado">Avançado</option>
         </select>
-        <ButtonPrimary type='submit'>Cadastrar Tecnologia</ButtonPrimary>
-      </FormTech>
-    </Container>
+        <button type='submit'>Cadastrar Tecnologia</button>
+      </form>
+    </div>
   )
 
 }

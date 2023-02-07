@@ -1,7 +1,4 @@
-import Container from "../../components/Container/styles";
-import Form from "../../components/Form/styles";
 import Header from "../../components/Header";
-import Button from "../../components/Button/styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm  } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -55,34 +52,36 @@ const Register = () => {
   }
 
   return (
-    <Container>
+    <div>
       <Header onClick={backToLogin}/>
-      <Form onSubmit={handleSubmit(registerUser)}>
+      <form onSubmit={handleSubmit(registerUser)}>
         <h2>Crie sua conta</h2>
         <span>Rápido e grátis, vamos nessa</span>
     
-        <label>Nome</label>
-        <input placeholder='Digite aqui seu nome' {...register("name")}/>
-        <p>{errors.name?.message}</p>
+       
+          <label>Nome</label>
+          <input placeholder='Nome' {...register("name")}/>
+          <p>{errors.name?.message}</p>
 
-        <label>Email</label>
-        <input placeholder='Digite aqui seu email' {...register("email")}/>
-        <p>{errors.email?.message}</p>
+          <label>Email</label>
+          <input placeholder='Email' {...register("email")}/>
+          <p>{errors.email?.message}</p>
+        
 
         <label>Senha</label>
-        <input type='password' placeholder='Digite aqui sua senha' {...register("password")}/>
+        <input type='password' placeholder='Senha' {...register("password")}/>
         <p>{errors.password?.message}</p>
 
         <label>Confirmar Senha</label>
-        <input type='password' placeholder='Confirme aqui sua senha' {...register("confirm_password")}/>
+        <input type='password' placeholder='Confirmar senha' {...register("confirm_password")}/>
         <p>{errors.confirm_password?.message}</p>
 
         <label>Bio</label>
-        <input placeholder='Digite aqui sua bio' {...register("bio")}/>
+        <input placeholder='Bio' {...register("bio")}/>
         <p>{errors.bio?.message}</p>
 
         <label>Contato</label>
-        <input placeholder='Digite aqui seu telefone' {...register("contact")}/>
+        <input placeholder='Telefone' {...register("contact")}/>
         <p>{errors.contact?.message}</p>
 
         <label>Selecionar</label>
@@ -94,9 +93,9 @@ const Register = () => {
         </select>
         <p>{errors.course_module?.message}</p>
 
-        <Button type='submit'>Cadastrar</Button>
-      </Form>
-    </Container>
+        <button type='submit'>Cadastrar</button>
+      </form>
+    </div>
   );
 };
 
