@@ -1,5 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import RoutesMain from './routes/RoutesMain';
+import "../src/styles/main.sass"
 
 function App() {
 
