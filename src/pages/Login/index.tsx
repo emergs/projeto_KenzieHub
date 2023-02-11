@@ -25,21 +25,21 @@ const Login = () => {
   }
 
   return(
-    <div className='divLogin' >
+    <div className='div-login' >
       <form onSubmit={handleSubmit(userLogin)}>
         <h2>Login</h2>
         <div>
-          <label  className='divvv' htmlFor="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input type="email" id="email" placeholder="Digite seu email" {...register('email')} />
-          <p>{errors.email?.message}</p>
+          <p className='msg-error'>{errors.email?.message}</p>
         </div>
         <div>
           <label htmlFor="pass">Senha</label>
           <input type="password" id="pass" placeholder="Digite sua senha" {...register('password')} />
-          <p>{errors.password?.message}</p>
+          <p className='msg-error'>{errors.password?.message}</p>
         </div>
         <div>
-          <button className='buttonSubmit' type='submit'>Entrar</button>
+          <button className='button-submit' type='submit'>Entrar</button>
         </div>
         <div>
           <span>Ainda não possui conta?</span>
