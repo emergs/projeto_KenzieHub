@@ -1,52 +1,70 @@
-import Container from "../../components/Container/styles";
-import Form from "../../components/Form/styles"
-import { useForm } from 'react-hook-form';
+import Form from "../../components/Form/styles";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { Span, ButtonPrimary, ButtonGray } from "./style";
-import * as yup from 'yup';
+import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
-import { IUserLogin } from "../../Providers/user"
+import { IUserLogin } from "../../Providers/user";
+import Container from "../../components/Container2";
 
 const schema = yup.object({
-  email: yup.string().required('Digite o email').email('Digite um email válido'),
-  password: yup.string().required('Digite a sua senha')
-})
+  email: yup
+    .string()
+    .required("Digite o email")
+    .email("Digite um email válido"),
+  password: yup.string().required("Digite a sua senha"),
+});
 
 const Login = () => {
-  const navigate = useNavigate()
-  const {userLogin} = useContext(UserContext)
+  const navigate = useNavigate();
+  const { userLogin } = useContext(UserContext);
 
-  const {register, handleSubmit, formState:{errors}} = useForm<IUserLogin>({
-    resolver: yupResolver(schema)
-  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUserLogin>({
+    resolver: yupResolver(schema),
+  });
 
-  const onClick = ()=>{
-    navigate('../register',{replace:true})
-  }
+  const onClick = () => {
+    navigate("../register", { replace: true });
+  };
 
-  return(
+  return (
     <Container>
       <Form onSubmit={handleSubmit(userLogin)}>
         <h2>Login</h2>
 
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" placeholder="Digite seu email" {...register('email')} />
+        <input
+          type="email"
+          id="email"
+          placeholder="Digite seu email"
+          {...register("email")}
+        />
         <p>{errors.email?.message}</p>
 
         <label htmlFor="pass">Senha</label>
-        <input type="password" id="pass" placeholder="Digite sua senha" {...register('password')} />
+        <input
+          type="password"
+          id="pass"
+          placeholder="Digite sua senha"
+          {...register("password")}
+        />
         <p>{errors.password?.message}</p>
 
-        <ButtonPrimary type='submit'>Entrar</ButtonPrimary>
+        <ButtonPrimary type="submit">Entrar</ButtonPrimary>
 
         <Span>Ainda não possui conta?</Span>
-        <ButtonGray type='button' onClick={()=>onClick()}>Cadastre-se</ButtonGray>
-
+        <ButtonGray type="button" onClick={() => onClick()}>
+          Cadastre-se
+        </ButtonGray>
       </Form>
     </Container>
-  )
+  );
 };
 
 export default Login;
