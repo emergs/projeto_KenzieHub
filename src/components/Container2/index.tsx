@@ -1,9 +1,6 @@
 import { ReactNode } from "react";
+import { IChildren } from "../../interfaces";
 import ContainerStyled from "./styles";
-
-interface IChildren {
-  children: ReactNode;
-}
 
 const Container = ({ children }: IChildren) => {
   return <ContainerStyled>{children}</ContainerStyled>;

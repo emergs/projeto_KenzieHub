@@ -1,15 +1,10 @@
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
+import { IBasicProps } from "../../interfaces";
 
-interface IContainerStyled extends HTMLAttributes<HTMLDivElement> {
-  display?: string;
-  justifyContent?: string;
-  alignItems?: string;
-  width?: string;
-  height?: string;
-  backgroundColor?: string;
-  borderRadius?: string;
-}
+interface IContainerStyled
+  extends IBasicProps,
+    HTMLAttributes<HTMLDivElement> {}
 
 const ContainerStyled = styled.div<IContainerStyled>`
   display: ${(props) => props.display || "flex"};

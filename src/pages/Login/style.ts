@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../components/Button/styles";
+import Button from "../../components/Button2";
 
 export const Span = styled.span`
   margin-top: 21px;

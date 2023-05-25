@@ -1,6 +1,6 @@
-import Button from "../Button/styles";
 import Headers from "./styles";
 import logo from "../../assets/Logo.svg"
+import Button from "../Button2";
 
 const Header = ({onClick}:any)=>{
   return(

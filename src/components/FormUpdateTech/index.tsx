@@ -1,33 +1,38 @@
 import Container from "./script";
-import * as yup from 'yup';
+import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {useForm} from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { IUpadateTech, UserContext } from "../../Providers/user";
-import Button from "../Button/styles";
 import { ButtonGray } from "../../pages/Login/style";
 import { FormTech } from "../FormCreateTech/script";
+import Button from "../Button2";
 
 const schema = yup.object({
   name: yup.string(),
   status: yup.string().required(),
-})
+});
 
-const FormUpdateTech = ()=>{
-  const {closeModalUpdate, getEvent, updateTech, titleTech} = useContext(UserContext)
-  const {register, handleSubmit, formState:{errors}} = useForm<IUpadateTech>({
-      resolver: yupResolver(schema)
+const FormUpdateTech = () => {
+  const { closeModalUpdate, getEvent, updateTech, titleTech } =
+    useContext(UserContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUpadateTech>({
+    resolver: yupResolver(schema),
   });
 
-  return(
+  return (
     <Container>
       <div className="titleTech">
         <h2>Tecnologia Detalhes</h2>
-        <button onClick={()=>closeModalUpdate()}>X</button>
+        <button onClick={() => closeModalUpdate()}>X</button>
       </div>
       <FormTech onSubmit={handleSubmit(updateTech)}>
         <label>Nome do projeto</label>
-        <input  {...register("name")} value={titleTech} disabled/>
+        <input {...register("name")} value={titleTech} disabled />
         <p>{errors.name?.message}</p>
 
         <label>Status</label>
@@ -37,13 +42,24 @@ const FormUpdateTech = ()=>{
           <option value="Avançado">Avançado</option>
         </select>
         <div className="btnGroup">
-          <Button type='submit' id='updateTech' onClick={(event)=>getEvent(event.currentTarget.id)}>Salvar Alterações</Button>
-          <ButtonGray type='submit' id='deleteTech' onClick={(event)=>getEvent(event.currentTarget.id)}>Excluir</ButtonGray>
+          <Button
+            type="submit"
+            id="updateTech"
+            onClick={(event) => getEvent(event.currentTarget.id)}
+          >
+            Salvar Alterações
+          </Button>
+          <Button
+            type="submit"
+            id="deleteTech"
+            onClick={(event) => getEvent(event.currentTarget.id)}
+          >
+            Excluir
+          </Button>
         </div>
       </FormTech>
-  </Container>
-  )
-
-}
+    </Container>
+  );
+};
 
 export default FormUpdateTech;

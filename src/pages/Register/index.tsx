@@ -1,6 +1,5 @@
 import Form from "../../components/Form/styles";
 import Header from "../../components/Header";
-import Button from "../../components/Button/styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ import api from "../../services/api";
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "../../components/Container2";
+import Button from "../../components/Button2";
 
 interface IUserRegister {
   email: string;
