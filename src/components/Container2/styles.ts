@@ -1,10 +1,10 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
 import { IBasicProps } from "../../interfaces";
 
-interface IContainerStyled
-  extends IBasicProps,
-    HTMLAttributes<HTMLDivElement> {}
+interface IContainerStyled extends IBasicProps, HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
 
 const ContainerStyled = styled.div<IContainerStyled>`
   display: ${(props) => props.display || "flex"};

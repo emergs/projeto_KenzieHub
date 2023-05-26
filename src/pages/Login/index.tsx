@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { IUserLogin } from "../../Providers/user";
 import Container from "../../components/Container2";
+import Title from "../../components/Title2";
 
 const schema = yup.object({
   email: yup
@@ -36,7 +37,7 @@ const Login = () => {
   return (
     <Container>
       <Form onSubmit={handleSubmit(userLogin)}>
-        <h2>Login</h2>
+        <Title font="var(--title2)">Login</Title>
 
         <label htmlFor="email">Email</label>
         <input

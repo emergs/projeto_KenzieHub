@@ -9,6 +9,7 @@ import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "../../components/Container2";
 import Button from "../../components/Button2";
+import Title from "../../components/Title2";
 
 interface IUserRegister {
   email: string;
@@ -67,7 +68,7 @@ const Register = () => {
     <Container>
       <Header onClick={backToLogin} />
       <Form onSubmit={handleSubmit(registerUser)}>
-        <h2>Crie sua conta</h2>
+        <Title font="var(--title2)">Crie sua conta</Title>
         <span>Rápido e grátis, vamos nessa</span>
 
         <label>Nome</label>

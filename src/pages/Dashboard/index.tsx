@@ -6,6 +6,7 @@ import {Main} from './styles';
 import ModalUpdateTech from '../../components/ModalUpdateTech';
 import ModalCreateTech from '../../components/ModalCreateTech';
 import { UserContext } from '../../Providers/user';
+import Title from '../../components/Title2';
 
 Modal.setAppElement('#root');
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
       </div>
       <header>
         <div>
-          <h1>Olá, {user?.name}</h1>
+          <Title>Olá, {user?.name}</Title>
           <span>{user?.course_module}</span>
         </div>
       </header>
