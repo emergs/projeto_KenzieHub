@@ -1,19 +1,41 @@
 import { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
+import { DeepMap, FieldError, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 import { IBasicProps } from "../../interfaces";
+import { IUserLogin } from "../../Providers/user";
 
-export interface IInputStyled
-  extends IBasicProps,
-    HTMLAttributes<HTMLInputElement> {
-  children: ReactNode;
+export interface IInput extends HTMLAttributes<HTMLInputElement> {
+  type: "email" | "password";
+  placeholder: string;
+  name: string;
+  label: string;
 }
 
-const InputStyled = styled.input<IInputStyled>`
-  width: ${(props) => props.width || "auto"};
+export interface IInputStyled extends IBasicProps {
+  children: ReactNode;
+  flexDirection?: string;
+}
+
+const InputStyled = styled.div<IInputStyled>`
+  display: ${(props) => props.display || "flex"};
+  justify-content: ${(props) => props.justifyContent || "center"};
+  align-items: ${(props) => props.alignItems || "flex-start"};
+  flex-direction: ${(props) => props.flexDirection || "column"};
+  width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height || "auto"};
   margin-top: ${(props) => props.marginTop || "0px"};
   color: ${(props) => props.color || " var(--gray-0)"};
   font: ${(props) => props.font || "var(--inputs)"};
+  gap: 10px;
+
+  label {
+    font: var(--headline);
+  }
+  input {
+    height: 48px;
+    width: 100%;
+    border-radius: 4px;
+  }
 `;
 
 export default InputStyled;

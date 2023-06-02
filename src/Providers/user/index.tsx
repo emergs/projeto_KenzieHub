@@ -57,6 +57,7 @@ interface IUserContext {
   modalUpdateIsOpen: boolean;
   titleTech: string;
   user: IUser;
+  navigateToRegister: () => void;
 }
 
 interface IUserProviderProps {
@@ -134,6 +135,10 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     setCount(count + 1);
   };
 
+  const navigateToRegister = () => {
+    navigate("../register", { replace: true });
+  };
+
   function openModalCreate() {
     setCreateIsOpen(true);
   }
@@ -208,6 +213,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         updateTech,
         loading,
         titleTech,
+        navigateToRegister,
       }}
     >
       {children}

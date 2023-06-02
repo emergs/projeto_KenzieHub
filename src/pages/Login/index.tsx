@@ -1,14 +1,15 @@
-import Form from "../../components/Form/styles";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-import { Span, ButtonPrimary, ButtonGray } from "./style";
+import { Span } from "./style";
 import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { IUserLogin } from "../../Providers/user";
 import Container from "../../components/Container2";
 import Title from "../../components/Title2";
+import Button from "../../components/Button2";
+import Form from "../../components/Form2";
+import Input from "../../components/Input2";
 
 const schema = yup.object({
   email: yup
@@ -19,51 +20,48 @@ const schema = yup.object({
 });
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, navigateToRegister } = useContext(UserContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IUserLogin>({
+  const methods = useForm<IUserLogin>({
     resolver: yupResolver(schema),
   });
 
-  const onClick = () => {
-    navigate("../register", { replace: true });
-  };
-
   return (
-    <Container>
-      <Form onSubmit={handleSubmit(userLogin)}>
-        <Title font="var(--title2)">Login</Title>
+    <Container height="100vh">
+      <FormProvider {...methods}>
+        <Form
+          onSubmit={methods.handleSubmit(userLogin)}
+          flexDirection="column"
+          justifyContent="space-around"
+          height="500px"
+        >
+          <Title font="var(--title2)">Login</Title>
+          <Input
+            type="email"
+            name="email"
+            placeholder="Digite seu email"
+            label="Email"
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Digite sua senha"
+            label="Senha"
+          />
+          <Button type="submit" backgroundColor="var(--color-primary)">
+            Entrar
+          </Button>
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Digite seu email"
-          {...register("email")}
-        />
-        <p>{errors.email?.message}</p>
-
-        <label htmlFor="pass">Senha</label>
-        <input
-          type="password"
-          id="pass"
-          placeholder="Digite sua senha"
-          {...register("password")}
-        />
-        <p>{errors.password?.message}</p>
-
-        <ButtonPrimary type="submit">Entrar</ButtonPrimary>
-
-        <Span>Ainda não possui conta?</Span>
-        <ButtonGray type="button" onClick={() => onClick()}>
-          Cadastre-se
-        </ButtonGray>
-      </Form>
+          <Span>Ainda não possui conta?</Span>
+          <Button
+            type="button"
+            backgroundColor="var(--gray-1)"
+            onClick={() => navigateToRegister()}
+          >
+            Cadastre-se
+          </Button>
+        </Form>
+      </FormProvider>
     </Container>
   );
 };

@@ -16,4 +16,5 @@ export interface IBasicProps {
   display?: string;
   justifyContent?: string;
   alignItems?: string;
+  padding?: string;
 }

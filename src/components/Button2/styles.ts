@@ -10,8 +10,8 @@ export interface IButtonStyled
 }
 
 const ButtonStyled = styled.button<IButtonStyled>`
-  width: ${(props) => props.width || "150px"};
-  height: ${(props) => props.height || "38px"};
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height || "48px"};
   border-radius: ${(props) => props.borderRadius || "4px"};
   border: ${(props) => props.border || "none"};
   margin-top: ${(props) => props.marginTop || "20px"};
