@@ -4,7 +4,7 @@ import { IBasicProps } from "../../interfaces";
 
 export interface IButtonStyled
   extends IBasicProps,
-  HTMLAttributes<HTMLButtonElement> {
+    HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   type?: "button" | "submit" | "reset";
   backgroundColorHover?: string;
@@ -19,9 +19,10 @@ const ButtonStyled = styled.button<IButtonStyled>`
   color: ${(props) => props.color || " var(--gray-0)"};
   font: ${(props) => props.font || "var(--inputs)"};
   background-color: ${(props) => props.backgroundColor || "#59323f"};
-  &{
-    :hover{
-      background-color: ${(props) => props.backgroundColorHover || "#59323f"}
+  & {
+    :hover {
+      cursor: pointer;
+      background-color: ${(props) => props.backgroundColorHover || "#59323f"};
     }
   }
 `;
