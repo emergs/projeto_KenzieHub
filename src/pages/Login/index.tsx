@@ -10,6 +10,7 @@ import Title from "../../components/Title2";
 import Button from "../../components/Button2";
 import Form from "../../components/Form2";
 import Input from "../../components/Input2";
+import logo from "../../assets/Logo.svg"
 
 const schema = yup.object({
   email: yup
@@ -27,15 +28,16 @@ const Login = () => {
   });
 
   return (
-    <Container height="100vh">
+    <Container height="100vh" flexDirection="column">
+      <img src={logo} alt="logo" />
       <FormProvider {...methods}>
         <Form
           onSubmit={methods.handleSubmit(userLogin)}
           flexDirection="column"
           justifyContent="space-around"
-          height="500px"
+          height="470px"
         >
-          <Title font="var(--title2)">Login</Title>
+          <Title font="var(--title1)">Login</Title>
           <Input
             type="email"
             name="email"
@@ -48,14 +50,18 @@ const Login = () => {
             placeholder="Digite sua senha"
             label="Senha"
           />
-          <Button type="submit" backgroundColor="var(--color-primary)">
+          <Button
+            type="submit"
+            backgroundColor="var(--color-primary)"
+            backgroundColorHover="var(--color-primary-focus)">
             Entrar
           </Button>
 
-          <Span>Ainda não possui conta?</Span>
+          <Span marginTop="30px">Ainda não possui conta?</Span>
           <Button
             type="button"
             backgroundColor="var(--gray-1)"
+            backgroundColorHover="var(--gray-2)"
             onClick={() => navigateToRegister()}
           >
             Cadastre-se

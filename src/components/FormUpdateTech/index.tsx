@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { IUpadateTech, UserContext } from "../../Providers/user";
-import { ButtonGray } from "../../pages/Login/style";
 import { FormTech } from "../FormCreateTech/script";
 import Button from "../Button2";
 

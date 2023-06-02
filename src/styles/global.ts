@@ -14,6 +14,7 @@ const Global = createGlobalStyle`
 
     --sucess:#3FE864;
     --negative:#E83F5B;
+    --danger: #FF0000;
 
     --title1: 700 20px 'Inter', sans-serif;
     --title2: bold 18px 'Inter',sans-serif;

@@ -6,6 +6,7 @@ const Button = ({
   onClick,
   color,
   backgroundColor,
+  backgroundColorHover
 }: IButtonStyled) => {
   return (
     <ButtonStyled
@@ -13,6 +14,7 @@ const Button = ({
       color={color}
       backgroundColor={backgroundColor}
       onClick={onClick}
+      backgroundColorHover={backgroundColorHover}
     >
       {children}
     </ButtonStyled>

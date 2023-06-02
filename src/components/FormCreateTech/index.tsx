@@ -7,9 +7,9 @@ import { Container, FormTech } from './script';
 import api from "../../services/api";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
-import { ButtonPrimary } from '../../pages/Login/style';
+import Button from '../Button2';
 
-interface ICreateTech{
+interface ICreateTech {
   title: string,
   status: string
 }
@@ -19,25 +19,25 @@ const schema = yup.object({
   status: yup.string().required(),
 })
 
-const FormCreateTech = ()=>{
-  const {addCount, closeModalCreate} = useContext(UserContext)
+const FormCreateTech = () => {
+  const { addCount, closeModalCreate } = useContext(UserContext)
   const navigate = useNavigate();
-  const {register, handleSubmit, formState:{errors}} = useForm<ICreateTech>({
+  const { register, handleSubmit, formState: { errors } } = useForm<ICreateTech>({
     resolver: yupResolver(schema)
   });
 
-  const createTech = async (data:ICreateTech): Promise<void> =>{
-    
+  const createTech = async (data: ICreateTech): Promise<void> => {
+
     const token = JSON.parse(localStorage.getItem('@kenzieHubTOKEN') || '{}')
-    if(token){
-      
+    if (token) {
+
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`
-        await api.post('/users/techs',data)
+        await api.post('/users/techs', data)
         toast.success('Tecnologia criada com sucesso')
         addCount()
         closeModalCreate()
-      } 
+      }
       catch (error) {
         console.error(error);
         toast.error('Erro ao criar tecnologia')
@@ -45,15 +45,15 @@ const FormCreateTech = ()=>{
     }
   }
 
-  return(
+  return (
     <Container>
       <div>
         <h2>Cadastrar Tecnologia</h2>
-        <button onClick={()=>closeModalCreate()}>X</button>
+        <button onClick={() => closeModalCreate()}>X</button>
       </div>
       <FormTech onSubmit={handleSubmit(createTech)}>
         <label>Nome</label>
-        <input placeholder='Digite o nome da tecnologia ' {...register("title")}/>
+        <input placeholder='Digite o nome da tecnologia ' {...register("title")} />
         <p>{errors.title?.message}</p>
 
         <label>Selecionar Status</label>
@@ -62,7 +62,7 @@ const FormCreateTech = ()=>{
           <option value="intermediario">Intermediário</option>
           <option value="avancado">Avançado</option>
         </select>
-        <ButtonPrimary type='submit'>Cadastrar Tecnologia</ButtonPrimary>
+        <Button type='submit'>Cadastrar Tecnologia</Button>
       </FormTech>
     </Container>
   )

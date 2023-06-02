@@ -1,5 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import InputStyled, { IInput } from "./styles";
+import { Span } from "../../pages/Login/style";
 
 const Input: React.FC<IInput> = ({ name, placeholder, type, label }) => {
   const {
@@ -12,9 +13,10 @@ const Input: React.FC<IInput> = ({ name, placeholder, type, label }) => {
       <input
         id={name}
         type={type}
-        {...register(name)} // Registra o campo com o React Hook Form
+        placeholder={placeholder}
+        {...register(name)}
       />
-      {errors[name] && <span>{(errors[name] as any).message}</span>}
+      {errors[name] && <Span marginTop="0px">{(errors[name] as any).message}</Span>}
     </InputStyled>
   );
 };

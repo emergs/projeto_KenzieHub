@@ -5,6 +5,7 @@ const Container = ({
   display,
   alignItems,
   justifyContent,
+  flexDirection,
   height,
 }: IContainerStyled) => {
   return (
@@ -13,6 +14,7 @@ const Container = ({
       alignItems={alignItems}
       justifyContent={justifyContent}
       height={height}
+      flexDirection={flexDirection}
     >
       {children}
     </ContainerStyled>

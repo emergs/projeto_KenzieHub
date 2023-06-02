@@ -65,7 +65,7 @@ const Register = () => {
   };
 
   return (
-    <Container>
+    <Container flexDirection="column">
       <Header onClick={backToLogin} />
       <Form onSubmit={handleSubmit(registerUser)}>
         <Title font="var(--title2)">Crie sua conta</Title>

@@ -34,7 +34,26 @@ const InputStyled = styled.div<IInputStyled>`
   input {
     height: 48px;
     width: 100%;
+    border: 1px solid var(--gray-0);
     border-radius: 4px;
+    background-color: var(--gray-2);
+    color: var(--gray-0);
+    padding-left: 15px;
+    margin-bottom: 10px;
+    &{
+      :focus{
+        padding-left: 15px;
+        outline: 1px solid var(--gray-0);
+        ::placeholder{
+        padding-left: 0px;
+        }
+      }
+    }
+  }
+  span{
+    font: var(--headline);
+    color: var(--danger);
+    margin-top: 0px;
   }
 `;
 
