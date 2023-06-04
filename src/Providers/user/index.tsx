@@ -52,16 +52,28 @@ interface IUserContext {
   openModalUpdate: () => void;
   updateTech: (data: IUserUpdateTech) => void;
   userLogin: (data: IUserLogin) => void;
+  registerUser: (data: IUserRegister) => void;
   loading: boolean;
   modalCreateIsOpen: boolean;
   modalUpdateIsOpen: boolean;
   titleTech: string;
   user: IUser;
   navigateToRegister: () => void;
+  backToLogin: () => void;
 }
 
 interface IUserProviderProps {
   children: ReactNode;
+}
+
+export interface IUserRegister {
+  email: string;
+  password: string;
+  name: string;
+  confirm_password: string;
+  bio: string;
+  contact: string;
+  course_module: string;
 }
 
 export interface IUpadateTech {
@@ -124,6 +136,18 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const registerUser = async (data: IUserRegister) => {
+    try {
+      const request = await api.post("/users", data);
+      if (request) {
+        navigate("../login", { replace: true });
+        toast.success("Usuario criado com sucesso!");
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   const deleteUserStorage = () => {
     navigate("../Login", { replace: true });
     localStorage.removeItem("@kenzieHubTOKEN");
@@ -137,6 +161,10 @@ const UserProvider = ({ children }: IUserProviderProps) => {
 
   const navigateToRegister = () => {
     navigate("../register", { replace: true });
+  };
+
+  const backToLogin = () => {
+    navigate("../login", { replace: true });
   };
 
   function openModalCreate() {
@@ -214,6 +242,8 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         loading,
         titleTech,
         navigateToRegister,
+        registerUser,
+        backToLogin,
       }}
     >
       {children}

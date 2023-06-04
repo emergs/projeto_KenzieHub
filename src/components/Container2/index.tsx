@@ -7,6 +7,7 @@ const Container = ({
   justifyContent,
   flexDirection,
   height,
+  width,
 }: IContainerStyled) => {
   return (
     <ContainerStyled
@@ -15,6 +16,7 @@ const Container = ({
       justifyContent={justifyContent}
       height={height}
       flexDirection={flexDirection}
+      width={width}
     >
       {children}
     </ContainerStyled>

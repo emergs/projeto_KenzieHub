@@ -5,7 +5,7 @@ import { IBasicProps } from "../../interfaces";
 import { IUserLogin } from "../../Providers/user";
 
 export interface IInput extends HTMLAttributes<HTMLInputElement> {
-  type: "email" | "password";
+  type: "email" | "password" | "text" | "tel";
   placeholder: string;
   name: string;
   label: string;

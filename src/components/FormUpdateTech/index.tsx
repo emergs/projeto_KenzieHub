@@ -4,8 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { IUpadateTech, UserContext } from "../../Providers/user";
-import { FormTech } from "../FormCreateTech/script";
 import Button from "../Button2";
+import Form from "../Form2";
 
 const schema = yup.object({
   name: yup.string(),
@@ -29,7 +29,7 @@ const FormUpdateTech = () => {
         <h2>Tecnologia Detalhes</h2>
         <button onClick={() => closeModalUpdate()}>X</button>
       </div>
-      <FormTech onSubmit={handleSubmit(updateTech)}>
+      <Form onSubmit={handleSubmit(updateTech)}>
         <label>Nome do projeto</label>
         <input {...register("name")} value={titleTech} disabled />
         <p>{errors.name?.message}</p>
@@ -56,7 +56,7 @@ const FormUpdateTech = () => {
             Excluir
           </Button>
         </div>
-      </FormTech>
+      </Form>
     </Container>
   );
 };

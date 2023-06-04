@@ -1,25 +1,17 @@
-import Form from "../../components/Form/styles";
-import Header from "../../components/Header";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import api from "../../services/api";
+import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "../../components/Container2";
 import Button from "../../components/Button2";
 import Title from "../../components/Title2";
-
-interface IUserRegister {
-  email: string;
-  password: string;
-  name: string;
-  confirm_password: string;
-  bio: string;
-  contact: string;
-  course_module: string;
-}
+import Form from "../../components/Form2";
+import { Span } from "../Login/style";
+import Input from "../../components/Input2";
+import SelectInput from "../../components/SelectInput2";
+import { IUserRegister, UserContext } from "../../Providers/user";
+import { useContext } from "react";
+import HeaderRegister from "../../components/HeaderRegister2";
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
@@ -38,93 +30,59 @@ const formSchema = yup.object({
 });
 
 const Register = () => {
-  const navigate = useNavigate();
+  const { registerUser, backToLogin } = useContext(UserContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IUserRegister>({
+  const methods = useForm<IUserRegister>({
     resolver: yupResolver(formSchema),
   });
 
-  const registerUser = async (data: IUserRegister) => {
-    try {
-      const request = await api.post("/users", data);
-      if (request) {
-        navigate("../login", { replace: true });
-        toast.success("Usuario criado com sucesso!");
-      }
-    } catch (error: any) {
-      toast.error(error.response.data.message);
-    }
-  };
-
-  const backToLogin = () => {
-    navigate("../login", { replace: true });
-  };
-
   return (
     <Container flexDirection="column">
-      <Header onClick={backToLogin} />
-      <Form onSubmit={handleSubmit(registerUser)}>
-        <Title font="var(--title2)">Crie sua conta</Title>
-        <span>Rápido e grátis, vamos nessa</span>
-
-        <label>Nome</label>
-        <input placeholder="Digite aqui seu nome" {...register("name")} />
-        <p>{errors.name?.message}</p>
-
-        <label>Email</label>
-        <input placeholder="Digite aqui seu email" {...register("email")} />
-        <p>{errors.email?.message}</p>
-
-        <label>Senha</label>
-        <input
-          type="password"
-          placeholder="Digite aqui sua senha"
-          {...register("password")}
-        />
-        <p>{errors.password?.message}</p>
-
-        <label>Confirmar Senha</label>
-        <input
-          type="password"
-          placeholder="Confirme aqui sua senha"
-          {...register("confirm_password")}
-        />
-        <p>{errors.confirm_password?.message}</p>
-
-        <label>Bio</label>
-        <input placeholder="Digite aqui sua bio" {...register("bio")} />
-        <p>{errors.bio?.message}</p>
-
-        <label>Contato</label>
-        <input
-          placeholder="Digite aqui seu telefone"
-          {...register("contact")}
-        />
-        <p>{errors.contact?.message}</p>
-
-        <label>Selecionar</label>
-        <select {...register("course_module")}>
-          <option value="Primeiro módulo (Introdução ao Frontend)">
-            Primeiro módulo (Introdução ao Frontend)
-          </option>
-          <option value="Segundo módulo (Frontend Avançado)">
-            Segundo módulo (Frontend Avançado)
-          </option>
-          <option value="Terceiro módulo (Introdução ao Backend)">
-            Terceiro módulo (Introdução ao Backend)
-          </option>
-          <option value="Quarto módulo (Backend Avançado)">
-            Quarto módulo (Backend Avançado)
-          </option>
-        </select>
-        <p>{errors.course_module?.message}</p>
-
-        <Button type="submit">Cadastrar</Button>
-      </Form>
+      <HeaderRegister backToLogin={backToLogin}/>
+      <FormProvider {...methods}>
+        <Form onSubmit={methods.handleSubmit(registerUser)}>
+          <Title font="var(--title2)">Crie sua conta</Title>
+          <Span>Rápido e grátis, vamos nessa</Span>
+          <Input
+            label="Nome"
+            name="name"
+            placeholder="Digite seu nome"
+            type="text"
+          />
+          <Input
+            label="Email"
+            name="email"
+            placeholder="Digite aqui seu email"
+            type="email"
+          />
+          <Input
+            label="Senha"
+            name="password"
+            placeholder="Digite aqui sua senha"
+            type="password"
+          />
+          <Input
+            label="Confirmar Senha"
+            name="confirm_password"
+            placeholder="Confirme aqui sua senha"
+            type="password"
+          />
+          <Input
+            label="Bio"
+            name="bio"
+            placeholder="Digite aqui sua bio"
+            type="text"
+          />
+          <Input
+            label="Contato"
+            name="contact"
+            placeholder="Digite aqui seu telefone"
+            type="tel"
+          />
+          {/*<SelectInput />*/}
+          <Button type="submit">Cadastrar</Button>
+        </Form>
+      </FormProvider>
     </Container>
   );
 };

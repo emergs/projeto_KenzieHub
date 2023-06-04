@@ -10,7 +10,7 @@ import Title from "../../components/Title2";
 import Button from "../../components/Button2";
 import Form from "../../components/Form2";
 import Input from "../../components/Input2";
-import logo from "../../assets/Logo.svg"
+import logo from "../../assets/Logo.svg";
 
 const schema = yup.object({
   email: yup
@@ -33,8 +33,7 @@ const Login = () => {
       <FormProvider {...methods}>
         <Form
           onSubmit={methods.handleSubmit(userLogin)}
-          flexDirection="column"
-          justifyContent="space-around"
+          justifyContent="space-between"
           height="470px"
         >
           <Title font="var(--title1)">Login</Title>
@@ -53,7 +52,8 @@ const Login = () => {
           <Button
             type="submit"
             backgroundColor="var(--color-primary)"
-            backgroundColorHover="var(--color-primary-focus)">
+            backgroundColorHover="var(--color-primary-focus)"
+          >
             Entrar
           </Button>
 
