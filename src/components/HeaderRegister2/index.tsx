@@ -6,7 +6,10 @@ const HeaderRegister = ({ backToLogin }: any) => {
   return (
     <HeaderRegisterStyled>
       <img src={logo} alt="logo" />
-      <Button type="button" onClick={backToLogin}>
+      <Button
+        type="button"
+        marginTop="0px"
+        onClick={backToLogin}>
         Voltar
       </Button>
     </HeaderRegisterStyled>

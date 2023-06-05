@@ -1,4 +1,3 @@
-import Container from "./script";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -6,6 +5,8 @@ import { useContext } from "react";
 import { IUpadateTech, UserContext } from "../../Providers/user";
 import Button from "../Button2";
 import Form from "../Form2";
+import Container from "../Container2";
+import HeaderModal from "../HeaderModal";
 
 const schema = yup.object({
   name: yup.string(),
@@ -24,11 +25,8 @@ const FormUpdateTech = () => {
   });
 
   return (
-    <Container>
-      <div className="titleTech">
-        <h2>Tecnologia Detalhes</h2>
-        <button onClick={() => closeModalUpdate()}>X</button>
-      </div>
+    <Container width="25rem" height="25rem" flexDirection="column">
+      <HeaderModal title="Tecnologia Detalhes" btnClose={closeModalUpdate} />
       <Form onSubmit={handleSubmit(updateTech)}>
         <label>Nome do projeto</label>
         <input {...register("name")} value={titleTech} disabled />

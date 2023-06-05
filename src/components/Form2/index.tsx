@@ -11,6 +11,7 @@ const Form = ({
   onSubmit,
   width,
   height,
+  marginBottom,
 }: IFormStyled) => {
   return (
     <FormStyled
@@ -23,6 +24,7 @@ const Form = ({
       onSubmit={onSubmit}
       width={width}
       height={height}
+      marginBottom={marginBottom}
     >
       {children}
     </FormStyled>

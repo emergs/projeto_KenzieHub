@@ -1,8 +1,6 @@
-import { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
-import { DeepMap, FieldError, UseFormRegister } from "react-hook-form";
+import { HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
 import { IBasicProps } from "../../interfaces";
-import { IUserLogin } from "../../Providers/user";
 
 export interface IInput extends HTMLAttributes<HTMLInputElement> {
   type: "email" | "password" | "text" | "tel";

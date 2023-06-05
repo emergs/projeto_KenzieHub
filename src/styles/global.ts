@@ -34,7 +34,6 @@ const Global = createGlobalStyle`
 
   body{
     background-color: var(--gray-4);
-    width: 100vw;
     height: 100vh;
   }
 `;

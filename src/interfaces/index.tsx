@@ -10,6 +10,7 @@ export interface IBasicProps {
   borderRadius?: string;
   border?: string;
   marginTop?: string;
+  marginBottom?: string;
   color?: string;
   font?: string;
   backgroundColor?: string;

@@ -4,7 +4,7 @@ import { IBasicProps } from "../../interfaces";
 
 export interface IButtonStyled
   extends IBasicProps,
-    HTMLAttributes<HTMLButtonElement> {
+  HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   type?: "button" | "submit" | "reset";
   backgroundColorHover?: string;

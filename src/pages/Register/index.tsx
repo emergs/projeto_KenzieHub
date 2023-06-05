@@ -37,10 +37,10 @@ const Register = () => {
   });
 
   return (
-    <Container flexDirection="column">
-      <HeaderRegister backToLogin={backToLogin}/>
+    <Container flexDirection="column" height="100%">
+      <HeaderRegister backToLogin={backToLogin} />
       <FormProvider {...methods}>
-        <Form onSubmit={methods.handleSubmit(registerUser)}>
+        <Form onSubmit={methods.handleSubmit(registerUser)} marginBottom="50px">
           <Title font="var(--title2)">Crie sua conta</Title>
           <Span>Rápido e grátis, vamos nessa</Span>
           <Input
@@ -79,7 +79,7 @@ const Register = () => {
             placeholder="Digite aqui seu telefone"
             type="tel"
           />
-          {/*<SelectInput />*/}
+          <SelectInput />
           <Button type="submit">Cadastrar</Button>
         </Form>
       </FormProvider>

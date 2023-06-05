@@ -6,6 +6,7 @@ const Button = ({
   onClick,
   color,
   backgroundColor,
+  marginTop,
   backgroundColorHover
 }: IButtonStyled) => {
   return (
@@ -13,6 +14,7 @@ const Button = ({
       type={type}
       color={color}
       backgroundColor={backgroundColor}
+      marginTop={marginTop}
       onClick={onClick}
       backgroundColorHover={backgroundColorHover}
     >
