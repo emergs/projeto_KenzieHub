@@ -5,17 +5,17 @@ export interface IChildren {
 }
 
 export interface IBasicProps {
-  width?: string;
-  height?: string;
-  borderRadius?: string;
+  alignItems?: string;
+  backgroundColor?: string;
   border?: string;
+  borderRadius?: string;
+  color?: string;
+  display?: string;
+  font?: string;
+  height?: string;
+  justifyContent?: string;
   marginTop?: string;
   marginBottom?: string;
-  color?: string;
-  font?: string;
-  backgroundColor?: string;
-  display?: string;
-  justifyContent?: string;
-  alignItems?: string;
   padding?: string;
+  width?: string;
 }

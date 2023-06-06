@@ -8,6 +8,7 @@ const Container = ({
   flexDirection,
   height,
   width,
+  gap,
 }: IContainerStyled) => {
   return (
     <ContainerStyled
@@ -17,6 +18,7 @@ const Container = ({
       height={height}
       flexDirection={flexDirection}
       width={width}
+      gap={gap}
     >
       {children}
     </ContainerStyled>

@@ -1,21 +1,18 @@
 import { useFormContext } from "react-hook-form";
 import { Span } from "../../pages/Login/style";
-import { SelectInputStyled } from "./styles";
+import { SelectInputStyled, ISelectInput } from "./styles";
 
-const SelectInput = () => {
+const SelectInput = ({name, label, options}:ISelectInput) => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
   return (
-    <SelectInputStyled >
+    /*<SelectInputStyled>
       <label htmlFor="module">Selecione seu módulo</label>
       <select id="module" {...register("module")}>
         <option value="Primeiro módulo (Introdução ao Frontend)">
-          <div>
-
-            Primeiro módulo (Introdução ao Frontend)
-          </div>
+          Primeiro módulo (Introdução ao Frontend)
         </option>
         <option value="Segundo módulo (Frontend Avançado)">
           Segundo módulo (Frontend Avançado)
@@ -26,6 +23,21 @@ const SelectInput = () => {
         <option value="Quarto módulo (Backend Avançado)">
           Quarto módulo (Backend Avançado)
         </option>
+      </select>
+      {errors && <Span marginTop="0px">{(errors as any).message}</Span>}
+    </SelectInputStyled>*/
+    <SelectInputStyled>
+      <label htmlFor={name}>Selecione seu módulo</label>
+      <select id={name} {...register(`${name}`)}>
+        {
+         options?.map(option)=>{
+           return(
+             <option value="Primeiro módulo (Introdução ao Frontend)">
+              Primeiro módulo (Introdução ao Frontend)
+            </option>
+           )
+         } 
+        }
       </select>
       {errors && <Span marginTop="0px">{(errors as any).message}</Span>}
     </SelectInputStyled>
