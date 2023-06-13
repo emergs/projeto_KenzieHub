@@ -11,6 +11,7 @@ const HeaderModal = ({ title, btnClose }: IHeaderModal) => {
       <Button
         width="11px"
         height="26px"
+        backgroundColor="inherit"
         onClick={() => {
           btnClose();
         }}

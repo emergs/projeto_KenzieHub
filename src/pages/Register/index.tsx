@@ -12,6 +12,7 @@ import SelectInput from "../../components/SelectInput2";
 import { IUserRegister, UserContext } from "../../Providers/user";
 import { useContext } from "react";
 import HeaderRegister from "../../components/HeaderRegister2";
+import { moduleOptions } from "../../utils";
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
@@ -79,7 +80,11 @@ const Register = () => {
             placeholder="Digite aqui seu telefone"
             type="tel"
           />
-          <SelectInput />
+          <SelectInput
+            label="Selecionar módulo"
+            name="module"
+            options={moduleOptions}
+          />
           <Button type="submit">Cadastrar</Button>
         </Form>
       </FormProvider>

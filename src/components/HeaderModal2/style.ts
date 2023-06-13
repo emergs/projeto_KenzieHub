@@ -22,4 +22,6 @@ export const HeaderModalStyled = styled.div<IHeaderModalStyled>`
   height: ${(props) => props.height || "50px"};
   padding: ${(props) => props.padding || "20px"};
   background-color: ${(props) => props.backgroundColor || "var(--gray-2)"};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;

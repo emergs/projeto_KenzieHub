@@ -51,6 +51,7 @@ interface IUserContext {
   openModalCreate: () => void;
   openModalUpdate: () => void;
   updateTech: (data: IUserUpdateTech) => void;
+  createTech(data: ICreateTech): Promise<void>;
   userLogin: (data: IUserLogin) => void;
   registerUser: (data: IUserRegister) => void;
   loading: boolean;
@@ -78,6 +79,11 @@ export interface IUserRegister {
 
 export interface IUpadateTech {
   name: string;
+  status: string;
+}
+
+export interface ICreateTech {
+  title: string;
   status: string;
 }
 
@@ -183,6 +189,23 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     setUpdateIsOpen(false);
   }
 
+  const createTech = async (data: ICreateTech): Promise<void> => {
+    console.log(data);
+    const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
+    if (token) {
+      try {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        await api.post("/users/techs", data);
+        toast.success("Tecnologia criada com sucesso");
+        addCount();
+        closeModalCreate();
+      } catch (error) {
+        console.error(error);
+        toast.error("Erro ao criar tecnologia");
+      }
+    }
+  };
+
   function getIdTech(id: string, title: string) {
     setIdTech(id);
     setTitleTech(title);
@@ -196,8 +219,8 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     const up = { status: data.status };
 
     const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
-
-    if (event == "updateTech") {
+    console.log(event);
+    if (event === "updateTech") {
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
         const { data } = await api.get("/profile");
@@ -244,6 +267,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         navigateToRegister,
         registerUser,
         backToLogin,
+        createTech,
       }}
     >
       {children}

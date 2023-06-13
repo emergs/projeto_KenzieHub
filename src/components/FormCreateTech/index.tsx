@@ -1,19 +1,15 @@
 import * as yup from "yup";
 import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { UserContext } from "../../Providers/user";
+import { useForm, FormProvider } from "react-hook-form";
+import { ICreateTech, UserContext } from "../../Providers/user";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container } from "./script";
-import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Button from "../Button2";
 import Form from "../Form2";
-
-interface ICreateTech {
-  title: string;
-  status: string;
-}
+import Container from "../Container2";
+import Input from "../Input2";
+import SelectInput from "../SelectInput2";
+import { skillTech } from "../../utils";
+import HeaderModal from "../HeaderModal2";
 
 const schema = yup.object({
   title: yup.string().required(),
@@ -21,54 +17,39 @@ const schema = yup.object({
 });
 
 const FormCreateTech = () => {
-  const { addCount, closeModalCreate } = useContext(UserContext);
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ICreateTech>({
+  const { addCount, closeModalCreate, createTech } = useContext(UserContext);
+
+  const methodsCreateTech = useForm<ICreateTech>({
     resolver: yupResolver(schema),
   });
 
-  const createTech = async (data: ICreateTech): Promise<void> => {
-    const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
-    if (token) {
-      try {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
-        await api.post("/users/techs", data);
-        toast.success("Tecnologia criada com sucesso");
-        addCount();
-        closeModalCreate();
-      } catch (error) {
-        console.error(error);
-        toast.error("Erro ao criar tecnologia");
-      }
-    }
-  };
-
   return (
-    <Container>
-      <div>
-        <h2>Cadastrar Tecnologia</h2>
-        <button onClick={() => closeModalCreate()}>X</button>
-      </div>
-      <Form onSubmit={handleSubmit(createTech)}>
-        <label>Nome</label>
-        <input
-          placeholder="Digite o nome da tecnologia "
-          {...register("title")}
-        />
-        <p>{errors.title?.message}</p>
+    <Container width="370px" height="324px" flexDirection="column">
+      <HeaderModal title="Cadastrar Tecnologia" btnClose={closeModalCreate} />
+      <FormProvider {...methodsCreateTech}>
+        <Form onSubmit={methodsCreateTech.handleSubmit(createTech)}>
+          <Input
+            type="text"
+            name="techName"
+            placeholder="Nome da Tecnologia"
+            label="Nome"
+          />
 
-        <label>Selecionar Status</label>
-        <select {...register("status")}>
-          <option value="iniciante">Iniciante</option>
-          <option value="intermediario">Intermediário</option>
-          <option value="avancado">Avançado</option>
-        </select>
-        <Button type="submit">Cadastrar Tecnologia</Button>
-      </Form>
+          <SelectInput
+            label="Selecionar status"
+            name="status"
+            options={skillTech}
+          />
+
+          <Button
+            type="submit"
+            backgroundColor="var(--color-primary)"
+            backgroundColorHover="var(--color-primary-focus)"
+          >
+            Cadastrar Tecnologia
+          </Button>
+        </Form>
+      </FormProvider>
     </Container>
   );
 };

@@ -4,7 +4,7 @@ import { IBasicProps } from "../../interfaces";
 
 export interface IButtonStyled
   extends IBasicProps,
-  HTMLAttributes<HTMLButtonElement> {
+    HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   type?: "button" | "submit" | "reset";
   backgroundColorHover?: string;
@@ -15,14 +15,14 @@ const ButtonStyled = styled.button<IButtonStyled>`
   height: ${(props) => props.height || "48px"};
   border-radius: ${(props) => props.borderRadius || "4px"};
   border: ${(props) => props.border || "none"};
-  margin-top: ${(props) => props.marginTop || "20px"};
+  margin-top: ${(props) => props.marginTop || "0px"};
   color: ${(props) => props.color || " var(--gray-0)"};
   font: ${(props) => props.font || "var(--inputs)"};
   background-color: ${(props) => props.backgroundColor || "#59323f"};
   & {
     :hover {
       cursor: pointer;
-      background-color: ${(props) => props.backgroundColorHover || "#59323f"};
+      background-color: ${(props) => props.backgroundColorHover || "none"};
     }
   }
 `;

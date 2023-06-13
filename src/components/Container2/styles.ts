@@ -4,7 +4,7 @@ import { IBasicProps } from "../../interfaces";
 
 export interface IContainerStyled
   extends IBasicProps,
-  HTMLAttributes<HTMLDivElement> {
+    HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   flexDirection?: string;
   gap?: string;
@@ -19,7 +19,7 @@ const ContainerStyled = styled.div<IContainerStyled>`
   height: ${(props) => props.height || "100vh"};
   background-color: ${(props) => props.backgroundColor || "var(--gray-4)"};
   border-radius: ${(props) => props.borderRadius || "8px"};
-  gap: ${(props) => props.gap || "15px"};
+  gap: ${(props) => props.gap || "0px"};
 
   img {
     width: 300px;
