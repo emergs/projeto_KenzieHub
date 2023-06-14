@@ -10,6 +10,8 @@ import HeaderModal from "../HeaderModal2";
 import Input from "../Input2";
 import SelectInput from "../SelectInput2";
 import { skillTech } from "../../utils";
+import InputStyled from "../Input2/styles";
+import { SelectInputStyled } from "../SelectInput2/styles";
 
 const schema = yup.object({
   name: yup.string(),
@@ -23,42 +25,46 @@ const FormUpdateTech = () => {
   const methods = useForm<IUpadateTech>({
     resolver: yupResolver(schema),
   });
+  const { handleSubmit, register, formState: { errors }, control } = methods
 
   return (
     <Container width="370px" height="324px" flexDirection="column">
       <HeaderModal title="Tecnologia Detalhes" btnClose={closeModalUpdate} />
-      <FormProvider {...methods}>
-        <Form onSubmit={methods.handleSubmit(updateTech)} height="292px">
-          <Input
-            label="Nome da tecnologia"
-            name="name"
-            type="text"
-            value={titleTech}
-          />
-          <SelectInput label="Status" name="status" options={skillTech} />
+      <Form onSubmit={handleSubmit(updateTech)} height="292px">
+        <InputStyled>
+          <label htmlFor="techName">Nome da tecnologia</label>
+          <input type="text" value={titleTech} {...register("name")} disabled />
+        </InputStyled>
+        <SelectInputStyled>
+          <label htmlFor="status">Status</label>
+          <select id="status" {...register("status")}>
+            <option value="iniciante">Iniciante</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+          </select>
+        </SelectInputStyled>
 
-          <Container backgroundColor="inherit" gap="20px">
-            <Button
-              width="204px"
-              type="submit"
-              id="updateTech"
-              onClick={(event) => getEvent(event.currentTarget.id)}
-            >
-              Salvar Alterações
-            </Button>
-            <Button
-              width="98px"
-              type="submit"
-              id="deleteTech"
-              backgroundColor="var(--gray-1)"
-              backgroundColorHover="var(--gray-2)"
-              onClick={(event) => getEvent(event.currentTarget.id)}
-            >
-              Excluir
-            </Button>
-          </Container>
-        </Form>
-      </FormProvider>
+        <Container backgroundColor="inherit" gap="20px">
+          <Button
+            width="204px"
+            type="submit"
+            id="updateTech"
+            onClick={(event) => console.log(event.currentTarget.id)}
+          >
+            Salvar Alterações
+          </Button>
+          <Button
+            width="98px"
+            type="submit"
+            id="deleteTech"
+            backgroundColor="var(--gray-1)"
+            backgroundColorHover="var(--gray-2)"
+            onClick={(event) => console.log(event.currentTarget.id)}
+          >
+            Excluir
+          </Button>
+        </Container>
+      </Form>
     </Container>
   );
 };

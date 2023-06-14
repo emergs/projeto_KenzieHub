@@ -10,12 +10,18 @@ interface ISelectOptions {
 export interface ISelectInput {
   name: string;
   label: string;
+  control: any;
+  errors: any;
   options: Array<ISelectOptions>;
+  ref: any;
+  onChange: any;
+  onBlur: any;
+  register: any;
 }
 
 export interface ISelectInputStyled
   extends IBasicProps,
-    HTMLAttributes<HTMLSelectElement> {
+  HTMLAttributes<HTMLSelectElement> {
   children: ReactNode;
   flexDirection?: string;
 }

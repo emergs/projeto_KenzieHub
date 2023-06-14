@@ -7,7 +7,10 @@ export interface IInput extends HTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   name: string;
   label: string;
-  value?:string;
+  value?: string;
+  register: any;
+  errors: any;
+  required: boolean;
 }
 
 export interface IInputStyled extends IBasicProps {

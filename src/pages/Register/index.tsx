@@ -13,6 +13,8 @@ import { IUserRegister, UserContext } from "../../Providers/user";
 import { useContext } from "react";
 import HeaderRegister from "../../components/HeaderRegister2";
 import { moduleOptions } from "../../utils";
+import InputStyled from "../../components/Input2/styles";
+import { SelectInputStyled } from "../../components/SelectInput2/styles";
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
@@ -36,58 +38,47 @@ const Register = () => {
   const methods = useForm<IUserRegister>({
     resolver: yupResolver(formSchema),
   });
+  const { handleSubmit, register, formState: { errors }, control } = methods;
 
   return (
     <Container flexDirection="column" height="100%">
       <HeaderRegister backToLogin={backToLogin} />
-      <FormProvider {...methods}>
-        <Form onSubmit={methods.handleSubmit(registerUser)} marginBottom="50px">
-          <Title font="var(--title2)">Crie sua conta</Title>
-          <Span>Rápido e grátis, vamos nessa</Span>
-          <Input
-            label="Nome"
-            name="name"
-            placeholder="Digite seu nome"
-            type="text"
-          />
-          <Input
-            label="Email"
-            name="email"
-            placeholder="Digite aqui seu email"
-            type="email"
-          />
-          <Input
-            label="Senha"
-            name="password"
-            placeholder="Digite aqui sua senha"
-            type="password"
-          />
-          <Input
-            label="Confirmar Senha"
-            name="confirm_password"
-            placeholder="Confirme aqui sua senha"
-            type="password"
-          />
-          <Input
-            label="Bio"
-            name="bio"
-            placeholder="Digite aqui sua bio"
-            type="text"
-          />
-          <Input
-            label="Contato"
-            name="contact"
-            placeholder="Digite aqui seu telefone"
-            type="tel"
-          />
-          <SelectInput
-            label="Selecionar módulo"
-            name="module"
-            options={moduleOptions}
-          />
-          <Button type="submit">Cadastrar</Button>
-        </Form>
-      </FormProvider>
+      <Form onSubmit={handleSubmit(registerUser)} marginBottom="50px">
+        <Title font="var(--title2)">Crie sua conta</Title>
+        <Span>Rápido e grátis, vamos nessa</Span>
+
+        <InputStyled>
+          <label htmlFor="name">Nome</label>
+          <input type="text" id="name" placeholder="Digite seu nome" {...register("name")} />
+
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" placeholder="Digite seu email" {...register("email")} />
+
+          <label htmlFor="password">Senha</label>
+          <input type="password" id="password" placeholder="Digite sua senha" {...register("password")} />
+
+          <label htmlFor="confirm_password">Confirme sua senha</label>
+          <input type="password" id="confirm_password" placeholder="Confirme sua senha" {...register("confirm_password")} />
+
+          <label htmlFor="bio">Bio</label>
+          <input type="text" id="bio" placeholder="Digite sua bio" {...register("bio")} />
+
+          <label htmlFor="contact">Contato</label>
+          <input type="text" id="contact" placeholder="Digite seu contato" {...register("contact")} />
+        </InputStyled>
+
+        <SelectInputStyled>
+          <label htmlFor="module">Módulo</label>
+          <select id="module" {...register("course_module")}>
+            <option value="primeiroModule">Primeiro módulo (Introdução ao Frontend)</option>
+            <option value="segundoModule">Segundo módulo (Frontend Avançado)</option>
+            <option value="terceiroModule">Terceiro módulo (Introdução ao Backend)</option>
+            <option value="quartoModule">Quarto módulo (Backend Avançado)</option>
+          </select>
+        </SelectInputStyled>
+
+        <Button type="submit">Cadastrar</Button>
+      </Form>
     </Container>
   );
 };
