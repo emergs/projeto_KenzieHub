@@ -1,52 +1,87 @@
-import Container from "../../components/Container/styles";
-import Form from "../../components/Form/styles"
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-import { Span, ButtonPrimary, ButtonGray } from "./style";
-import * as yup from 'yup';
+import { Span } from "./style";
+import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
-import { IUserLogin } from "../../Providers/user"
+import { IUserLogin } from "../../Providers/user";
+import Container from "../../components/Container";
+import Title from "../../components/Title";
+import Button from "../../components/Button";
+import Form from "../../components/Form";
+import logo from "../../assets/Logo.svg";
+import InputStyled from "../../components/Input/styles";
 
 const schema = yup.object({
-  email: yup.string().required('Digite o email').email('Digite um email válido'),
-  password: yup.string().required('Digite a sua senha')
-})
+  email: yup
+    .string()
+    .required("Digite o email")
+    .email("Digite um email válido"),
+  password: yup.string().required("Digite a sua senha"),
+});
 
 const Login = () => {
-  const navigate = useNavigate()
-  const {userLogin} = useContext(UserContext)
+  const { userLogin, navigateToRegister } = useContext(UserContext);
 
-  const {register, handleSubmit, formState:{errors}} = useForm<IUserLogin>({
-    resolver: yupResolver(schema)
-  })
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<IUserLogin>({
+    resolver: yupResolver(schema),
+  });
 
-  const onClick = ()=>{
-    navigate('../register',{replace:true})
-  }
+  return (
+    <Container height="100vh" flexDirection="column">
+      <img src={logo} alt="logo" />
 
-  return(
-    <Container>
-      <Form onSubmit={handleSubmit(userLogin)}>
-        <h2>Login</h2>
+      <Form
+        onSubmit={handleSubmit(userLogin)}
+        justifyContent="space-between"
+        height="470px"
+      >
+        <Title font="var(--title1)">Login</Title>
 
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" placeholder="Digite seu email" {...register('email')} />
-        <p>{errors.email?.message}</p>
+        <InputStyled>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Digite seu email"
+            {...register("email")}
+          />
+          <p>{errors.email?.message}</p>
 
-        <label htmlFor="pass">Senha</label>
-        <input type="password" id="pass" placeholder="Digite sua senha" {...register('password')} />
-        <p>{errors.password?.message}</p>
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+          />
+          <p>{errors.password?.message}</p>
+        </InputStyled>
 
-        <ButtonPrimary type='submit'>Entrar</ButtonPrimary>
+        <Button
+          type="submit"
+          backgroundColor="var(--color-primary)"
+          backgroundColorHover="var(--color-primary-focus)"
+        >
+          Entrar
+        </Button>
 
-        <Span>Ainda não possui conta?</Span>
-        <ButtonGray type='button' onClick={()=>onClick()}>Cadastre-se</ButtonGray>
-
+        <Span marginTop="30px">Ainda não possui conta?</Span>
+        <Button
+          type="button"
+          backgroundColor="var(--gray-1)"
+          backgroundColorHover="var(--gray-2)"
+          onClick={() => navigateToRegister()}
+        >
+          Cadastre-se
+        </Button>
       </Form>
     </Container>
-  )
+  );
 };
 
 export default Login;

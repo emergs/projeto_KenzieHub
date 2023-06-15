@@ -1,63 +1,30 @@
+import { HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
+import { IBasicProps } from "../../interfaces";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color:var(--gray-4);
-  border-radius: 8px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 49.46px;
-  padding-bottom:46px ;
+export interface IContainerStyled
+  extends IBasicProps,
+    HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  flexDirection?: string;
+  gap?: string;
+}
 
-  .titleTech{
-    width: 296px;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--gray-2);
-    border-radius: 8px 8px 0px 0px;
+const ContainerStyled = styled.div<IContainerStyled>`
+  display: ${(props) => props.display || "flex"};
+  justify-content: ${(props) => props.justifyContent || "center"};
+  align-items: ${(props) => props.alignItems || "center"};
+  flex-direction: ${(props) => props.flexDirection || "row"};
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height || "100vh"};
+  background-color: ${(props) => props.backgroundColor || "var(--gray-4)"};
+  border-radius: ${(props) => props.borderRadius || "8px"};
+  gap: ${(props) => props.gap || "0px"};
+
+  img {
+    width: 300px;
+    height: 100px;
   }
+`;
 
-  form{
-    border-radius: 0px 0px 8px 8px;
-    box-shadow: none;
-  }
-
-  h2{
-    font: var(--title3);
-    color:var(--gray-0);
-    width: 100%;
-    height: 50px;
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-  }
-
-  .titleTech button{
-    font-size: 100%;
-    width: 15px;
-    margin-right: 20px;
-    background: transparent;
-    border: none;
-    color: var(--gray-0);
-  }
-
-  .btnGroup{
-    display: flex;
-    justify-content: space-between;
-  }
-
-
-  .btnGroup button:first-child{
-    width: 163px;
-  }
-
-  .btnGroup button:last-child{
-    width: 78px;
-  }
-`
-
-export default Container;
+export default ContainerStyled;

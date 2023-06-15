@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Form from "../Form/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -7,10 +6,10 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color:var(--gray-4);
+  background-color: var(--gray-4);
   border-radius: 8px;
 
-  div{
+  div {
     width: 296px;
     display: flex;
     justify-content: space-between;
@@ -18,14 +17,14 @@ export const Container = styled.div`
     border-radius: 8px 8px 0px 0px;
   }
 
-  form{
+  form {
     border-radius: 0px 0px 8px 8px;
     box-shadow: none;
   }
 
-  h2{
+  h2 {
     font: var(--title3);
-    color:var(--gray-0);
+    color: var(--gray-0);
     width: 100%;
     height: 50px;
     padding-left: 20px;
@@ -33,7 +32,7 @@ export const Container = styled.div`
     align-items: center;
   }
 
-  div button{
+  div button {
     font-size: 100%;
     width: 15px;
     margin-right: 20px;
@@ -41,7 +40,4 @@ export const Container = styled.div`
     border: none;
     color: var(--gray-0);
   }
-`
-export const FormTech = styled(Form)`
-  padding-top: 10px;
-`
+`;

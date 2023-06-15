@@ -1,59 +1,29 @@
-import styled from 'styled-components';
+import { HTMLAttributes, ReactNode } from "react";
+import styled from "styled-components";
+import { IBasicProps } from "../../interfaces";
 
-const Form = styled.form`
-width: 296px;
-background-color: var(--gray-3);
-display:flex;
-flex-direction:column;
-padding-top: 33.58px;
-padding-bottom: 19.96px;
-padding-left: 17.99px;
-padding-right: 14.05px;
-border-radius: 3.2px;
-box-shadow: 0px 0px 8px 2px var(--gray-2);
-
-h2{
-  font:var(--title1);
-  color:var(--gray-0);
-  margin-bottom: 18px;
-}  
-
-span{
-  font:var(--headline-italic);
-  color: var(--gray-0);
+export interface IFormStyled
+  extends IBasicProps,
+  HTMLAttributes<HTMLFormElement> {
+  children: ReactNode;
+  flexDirection?: string;
 }
 
-label{
-  color: var(--gray-0);
-  margin-top: 21.32px;
-  text-align: start;
-}
+const FormStyled = styled.form<IFormStyled>`
+  display: ${(props) => props.display || "flex"};
+  justify-content: ${(props) => props.justifyContent || "center"};
+  align-items: ${(props) => props.alignItems || "center"};
+  flex-direction: ${(props) => props.flexDirection || "column"};
+  width: ${(props) => props.width || "370px"};
+  height: ${(props) => props.height || "auto"};
+  background-color: ${(props) => props.backgroundColor || "var(--gray-3)"};
+  border-radius: ${(props) => props.borderRadius || "8px"};
+  padding: ${(props) => props.padding || "30px"};
+  margin-bottom: ${(props) => props.marginBottom || "0px"};
 
-input, select{
-  width:100%;
-  height: 38.38px;
-  margin-top: 17.86px;
-  border-radius: 3.2px;
-  border: none;
-  background-color:var(--gray-2);
-  color: var(--gray-0);
-  padding-left: 13px;
-  font:var(--inputs);
-}
+  &div {
+    background-color: green;
+  }
+`;
 
-input::placeholder{
-  color:var(--gray-0);
-}
-
-select{
-  padding-left: 13px;
-}
-
-/* button{
-  margin-top: 20px;
-  width: 100%;
-  background-color: var(--color-primary-negative);
-} */
-  
-`
-export default Form;
+export default FormStyled;

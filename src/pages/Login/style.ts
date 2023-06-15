@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import Button from "../../components/Button/styles";
+import { IBasicProps } from "../../interfaces";
+import { HTMLAttributes } from "react";
 
-export const Span = styled.span`
-  margin-top: 21px;
-`
-export const ButtonPrimary = styled(Button)`
-  background-color: #FF577f;
-`
-export const ButtonGray = styled(Button)`
-  background-color: #869E96;
+interface ISpanStyled extends IBasicProps, HTMLAttributes<HTMLSpanElement> {
+  marginTop?: string;
+}
+
+export const Span = styled.span<ISpanStyled>`
+  color: ${(props) => props.color || "var(--gray-0)"};
+  margin-top: ${(props) => props.marginTop || "auto"};
+  margin-bottom: ${(props) => props.marginBottom || "20px"};
 `

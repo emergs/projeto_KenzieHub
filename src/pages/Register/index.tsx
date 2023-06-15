@@ -1,100 +1,128 @@
-import Container from "../../components/Container/styles";
-import Form from "../../components/Form/styles";
-import Header from "../../components/Header";
-import Button from "../../components/Button/styles";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm  } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify'
-import api from '../../services/api';
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import 'react-toastify/dist/ReactToastify.css';
-
-interface IUserRegister{
-  email: string;
-  password: string;
-  name: string;
-  confirm_password: string;
-  bio: string;
-  contact: string;
-  course_module: string;
-}
+import "react-toastify/dist/ReactToastify.css";
+import Container from "../../components/Container";
+import Button from "../../components/Button";
+import Title from "../../components/Title";
+import Form from "../../components/Form";
+import { Span } from "../Login/style";
+import { IUserRegister, UserContext } from "../../Providers/user";
+import { useContext } from "react";
+import HeaderRegister from "../../components/HeaderRegister";
+import InputStyled from "../../components/Input/styles";
+import { SelectInputStyled } from "../../components/SelectInput/styles";
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
-  email: yup.string().required("email obrigatório").email('email inválido'),
-  password: yup.string().required("Senha obrigatória").min(8,'A senha tem que ter no mínimo 8 caracteres'),
-  confirm_password: yup.string().required("Senha obrigatória").oneOf([yup.ref('password')],'as duas senhas digitadas são diferentes'),
+  email: yup.string().required("email obrigatório").email("email inválido"),
+  password: yup
+    .string()
+    .required("Senha obrigatória")
+    .min(8, "A senha tem que ter no mínimo 8 caracteres"),
+  confirm_password: yup
+    .string()
+    .required("Senha obrigatória")
+    .oneOf([yup.ref("password")], "as duas senhas digitadas são diferentes"),
   bio: yup.string().required("Bio obrigatória"),
   contact: yup.string().required("Número de contato obrigatório"),
-  course_module: yup.string().required('Selecione o módulo por favor')
-})
+  course_module: yup.string().required("Selecione o módulo por favor"),
+});
 
 const Register = () => {
-  const navigate = useNavigate()
+  const { registerUser, backToLogin } = useContext(UserContext);
 
-  const {register, handleSubmit, formState:{errors}} = useForm<IUserRegister>({
-    resolver: yupResolver(formSchema)
-  })
-
-  const registerUser = async( data:IUserRegister)=>{
-    try {
-      const request = await api.post('/users',data)
-      if(request){
-        navigate('../login', {replace:true})
-        toast.success('Usuario criado com sucesso!')
-      }
-    } 
-    catch (error:any) {
-      toast.error(error.response.data.message)
-    }
-  }
-
-  const backToLogin = ()=>{
-    navigate('../login',{replace:true})
-  }
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<IUserRegister>({
+    resolver: yupResolver(formSchema),
+  });
 
   return (
-    <Container>
-      <Header onClick={backToLogin}/>
-      <Form onSubmit={handleSubmit(registerUser)}>
-        <h2>Crie sua conta</h2>
-        <span>Rápido e grátis, vamos nessa</span>
-    
-        <label>Nome</label>
-        <input placeholder='Digite aqui seu nome' {...register("name")}/>
-        <p>{errors.name?.message}</p>
+    <Container flexDirection="column" height="100%">
+      <HeaderRegister backToLogin={backToLogin} />
+      <Form onSubmit={handleSubmit(registerUser)} marginBottom="50px">
+        <Title font="var(--title2)">Crie sua conta</Title>
+        <Span>Rápido e grátis, vamos nessa</Span>
 
-        <label>Email</label>
-        <input placeholder='Digite aqui seu email' {...register("email")}/>
-        <p>{errors.email?.message}</p>
+        <InputStyled>
+          <label htmlFor="name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Digite seu nome"
+            {...register("name")}
+          />
+          <p>{errors.name?.message}</p>
 
-        <label>Senha</label>
-        <input type='password' placeholder='Digite aqui sua senha' {...register("password")}/>
-        <p>{errors.password?.message}</p>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Digite seu email"
+            {...register("email")}
+          />
+          <p>{errors.email?.message}</p>
 
-        <label>Confirmar Senha</label>
-        <input type='password' placeholder='Confirme aqui sua senha' {...register("confirm_password")}/>
-        <p>{errors.confirm_password?.message}</p>
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+          />
+          <p>{errors.password?.message}</p>
 
-        <label>Bio</label>
-        <input placeholder='Digite aqui sua bio' {...register("bio")}/>
-        <p>{errors.bio?.message}</p>
+          <label htmlFor="confirm_password">Confirme sua senha</label>
+          <input
+            type="password"
+            id="confirm_password"
+            placeholder="Confirme sua senha"
+            {...register("confirm_password")}
+          />
+          <p>{errors.confirm_password?.message}</p>
 
-        <label>Contato</label>
-        <input placeholder='Digite aqui seu telefone' {...register("contact")}/>
-        <p>{errors.contact?.message}</p>
+          <label htmlFor="bio">Bio</label>
+          <input
+            type="text"
+            id="bio"
+            placeholder="Digite sua bio"
+            {...register("bio")}
+          />
+          <p>{errors.bio?.message}</p>
 
-        <label>Selecionar</label>
-        <select {...register("course_module")}>
-          <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo (Introdução ao Frontend)</option>
-          <option value="Segundo módulo (Frontend Avançado)">Segundo módulo (Frontend Avançado)</option>
-          <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</option>
-          <option value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</option>
-        </select>
-        <p>{errors.course_module?.message}</p>
+          <label htmlFor="contact">Contato</label>
+          <input
+            type="text"
+            id="contact"
+            placeholder="Digite seu contato"
+            {...register("contact")}
+          />
+          <p>{errors.contact?.message}</p>
+        </InputStyled>
 
-        <Button type='submit'>Cadastrar</Button>
+        <SelectInputStyled>
+          <label htmlFor="module">Módulo</label>
+          <select id="module" {...register("course_module")}>
+            <option value="primeiroModule">
+              Primeiro módulo (Introdução ao Frontend)
+            </option>
+            <option value="segundoModule">
+              Segundo módulo (Frontend Avançado)
+            </option>
+            <option value="terceiroModule">
+              Terceiro módulo (Introdução ao Backend)
+            </option>
+            <option value="quartoModule">
+              Quarto módulo (Backend Avançado)
+            </option>
+          </select>
+          <p>{errors.course_module?.message}</p>
+        </SelectInputStyled>
+
+        <Button type="submit">Cadastrar</Button>
       </Form>
     </Container>
   );

@@ -51,20 +51,39 @@ interface IUserContext {
   openModalCreate: () => void;
   openModalUpdate: () => void;
   updateTech: (data: IUserUpdateTech) => void;
+  createTech(data: ICreateTech): Promise<void>;
   userLogin: (data: IUserLogin) => void;
+  registerUser: (data: IUserRegister) => void;
   loading: boolean;
   modalCreateIsOpen: boolean;
   modalUpdateIsOpen: boolean;
   titleTech: string;
   user: IUser;
+  navigateToRegister: () => void;
+  backToLogin: () => void;
 }
 
 interface IUserProviderProps {
   children: ReactNode;
 }
 
+export interface IUserRegister {
+  email: string;
+  password: string;
+  name: string;
+  confirm_password: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
+
 export interface IUpadateTech {
   name: string;
+  status: string;
+}
+
+export interface ICreateTech {
+  title: string;
   status: string;
 }
 
@@ -123,6 +142,18 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const registerUser = async (data: IUserRegister) => {
+    try {
+      const request = await api.post("/users", data);
+      if (request) {
+        navigate("../login", { replace: true });
+        toast.success("Usuario criado com sucesso!");
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   const deleteUserStorage = () => {
     navigate("../Login", { replace: true });
     localStorage.removeItem("@kenzieHubTOKEN");
@@ -132,6 +163,14 @@ const UserProvider = ({ children }: IUserProviderProps) => {
 
   const addCount = () => {
     setCount(count + 1);
+  };
+
+  const navigateToRegister = () => {
+    navigate("../register", { replace: true });
+  };
+
+  const backToLogin = () => {
+    navigate("../login", { replace: true });
   };
 
   function openModalCreate() {
@@ -150,6 +189,22 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     setUpdateIsOpen(false);
   }
 
+  const createTech = async (data: ICreateTech): Promise<void> => {
+    const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
+    if (token) {
+      try {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        await api.post("/users/techs", data);
+        toast.success("Tecnologia criada com sucesso");
+        addCount();
+        closeModalCreate();
+      } catch (error) {
+        console.error(error);
+        toast.error("Erro ao criar tecnologia");
+      }
+    }
+  };
+
   function getIdTech(id: string, title: string) {
     setIdTech(id);
     setTitleTech(title);
@@ -163,8 +218,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     const up = { status: data.status };
 
     const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
-
-    if (event == "updateTech") {
+    if (event === "updateTech") {
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
         const { data } = await api.get("/profile");
@@ -208,6 +262,10 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         updateTech,
         loading,
         titleTech,
+        navigateToRegister,
+        registerUser,
+        backToLogin,
+        createTech,
       }}
     >
       {children}
