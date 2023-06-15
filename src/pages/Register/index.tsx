@@ -1,20 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
-import Container from "../../components/Container2";
-import Button from "../../components/Button2";
-import Title from "../../components/Title2";
-import Form from "../../components/Form2";
+import Container from "../../components/Container";
+import Button from "../../components/Button";
+import Title from "../../components/Title";
+import Form from "../../components/Form";
 import { Span } from "../Login/style";
-import Input from "../../components/Input2";
-import SelectInput from "../../components/SelectInput2";
 import { IUserRegister, UserContext } from "../../Providers/user";
 import { useContext } from "react";
-import HeaderRegister from "../../components/HeaderRegister2";
-import { moduleOptions } from "../../utils";
-import InputStyled from "../../components/Input2/styles";
-import { SelectInputStyled } from "../../components/SelectInput2/styles";
+import HeaderRegister from "../../components/HeaderRegister";
+import InputStyled from "../../components/Input/styles";
+import { SelectInputStyled } from "../../components/SelectInput/styles";
 
 const formSchema = yup.object({
   name: yup.string().required("Nome obrigatório"),
@@ -35,10 +32,13 @@ const formSchema = yup.object({
 const Register = () => {
   const { registerUser, backToLogin } = useContext(UserContext);
 
-  const methods = useForm<IUserRegister>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<IUserRegister>({
     resolver: yupResolver(formSchema),
   });
-  const { handleSubmit, register, formState: { errors }, control } = methods;
 
   return (
     <Container flexDirection="column" height="100%">
@@ -49,32 +49,77 @@ const Register = () => {
 
         <InputStyled>
           <label htmlFor="name">Nome</label>
-          <input type="text" id="name" placeholder="Digite seu nome" {...register("name")} />
+          <input
+            type="text"
+            id="name"
+            placeholder="Digite seu nome"
+            {...register("name")}
+          />
+          <p>{errors.name?.message}</p>
 
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="Digite seu email" {...register("email")} />
+          <input
+            type="email"
+            id="email"
+            placeholder="Digite seu email"
+            {...register("email")}
+          />
+          <p>{errors.email?.message}</p>
 
           <label htmlFor="password">Senha</label>
-          <input type="password" id="password" placeholder="Digite sua senha" {...register("password")} />
+          <input
+            type="password"
+            id="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+          />
+          <p>{errors.password?.message}</p>
 
           <label htmlFor="confirm_password">Confirme sua senha</label>
-          <input type="password" id="confirm_password" placeholder="Confirme sua senha" {...register("confirm_password")} />
+          <input
+            type="password"
+            id="confirm_password"
+            placeholder="Confirme sua senha"
+            {...register("confirm_password")}
+          />
+          <p>{errors.confirm_password?.message}</p>
 
           <label htmlFor="bio">Bio</label>
-          <input type="text" id="bio" placeholder="Digite sua bio" {...register("bio")} />
+          <input
+            type="text"
+            id="bio"
+            placeholder="Digite sua bio"
+            {...register("bio")}
+          />
+          <p>{errors.bio?.message}</p>
 
           <label htmlFor="contact">Contato</label>
-          <input type="text" id="contact" placeholder="Digite seu contato" {...register("contact")} />
+          <input
+            type="text"
+            id="contact"
+            placeholder="Digite seu contato"
+            {...register("contact")}
+          />
+          <p>{errors.contact?.message}</p>
         </InputStyled>
 
         <SelectInputStyled>
           <label htmlFor="module">Módulo</label>
           <select id="module" {...register("course_module")}>
-            <option value="primeiroModule">Primeiro módulo (Introdução ao Frontend)</option>
-            <option value="segundoModule">Segundo módulo (Frontend Avançado)</option>
-            <option value="terceiroModule">Terceiro módulo (Introdução ao Backend)</option>
-            <option value="quartoModule">Quarto módulo (Backend Avançado)</option>
+            <option value="primeiroModule">
+              Primeiro módulo (Introdução ao Frontend)
+            </option>
+            <option value="segundoModule">
+              Segundo módulo (Frontend Avançado)
+            </option>
+            <option value="terceiroModule">
+              Terceiro módulo (Introdução ao Backend)
+            </option>
+            <option value="quartoModule">
+              Quarto módulo (Backend Avançado)
+            </option>
           </select>
+          <p>{errors.course_module?.message}</p>
         </SelectInputStyled>
 
         <Button type="submit">Cadastrar</Button>

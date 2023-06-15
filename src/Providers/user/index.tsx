@@ -190,7 +190,6 @@ const UserProvider = ({ children }: IUserProviderProps) => {
   }
 
   const createTech = async (data: ICreateTech): Promise<void> => {
-    console.log(data);
     const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
     if (token) {
       try {
@@ -219,7 +218,6 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     const up = { status: data.status };
 
     const token = JSON.parse(localStorage.getItem("@kenzieHubTOKEN") || "{}");
-    console.log(event);
     if (event === "updateTech") {
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`;

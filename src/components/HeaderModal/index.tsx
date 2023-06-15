@@ -1,5 +1,5 @@
-import Button from "../Button2";
-import Title from "../Title2";
+import Button from "../Button";
+import Title from "../Title";
 import { HeaderModalStyled, IHeaderModal } from "./style";
 
 const HeaderModal = ({ title, btnClose }: IHeaderModal) => {

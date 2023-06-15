@@ -1,17 +1,14 @@
 import * as yup from "yup";
 import { useContext } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ICreateTech, UserContext } from "../../Providers/user";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Button from "../Button2";
-import Form from "../Form2";
-import Container from "../Container2";
-import Input from "../Input2";
-import SelectInput from "../SelectInput2";
-import { skillTech } from "../../utils";
-import HeaderModal from "../HeaderModal2";
-import InputStyled from "../Input2/styles";
-import { SelectInputStyled } from "../SelectInput2/styles";
+import Button from "../Button";
+import Form from "../Form";
+import Container from "../Container";
+import HeaderModal from "../HeaderModal";
+import InputStyled from "../Input/styles";
+import { SelectInputStyled } from "../SelectInput/styles";
 
 const schema = yup.object({
   title: yup.string().required(),
@@ -19,9 +16,13 @@ const schema = yup.object({
 });
 
 const FormCreateTech = () => {
-  const { addCount, closeModalCreate, createTech } = useContext(UserContext);
+  const { closeModalCreate, createTech } = useContext(UserContext);
 
-  const { handleSubmit, register, formState: { errors }, control } = useForm<ICreateTech>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<ICreateTech>({
     resolver: yupResolver(schema),
   });
 
@@ -29,10 +30,15 @@ const FormCreateTech = () => {
     <Container width="370px" height="324px" flexDirection="column">
       <HeaderModal title="Cadastrar Tecnologia" btnClose={closeModalCreate} />
       <Form onSubmit={handleSubmit(createTech)}>
-
         <InputStyled>
           <label htmlFor="techName">Nome da tecnologia</label>
-          <input type="text" id="techName" placeholder="Nome da Tecnologia" {...register("title")} />
+          <input
+            type="text"
+            id="techName"
+            placeholder="Nome da Tecnologia"
+            {...register("title")}
+          />
+          <p>{errors.title?.message}</p>
         </InputStyled>
 
         <SelectInputStyled>
@@ -42,6 +48,7 @@ const FormCreateTech = () => {
             <option value="intermediario">Intermediário</option>
             <option value="avancado">Avançado</option>
           </select>
+          <p>{errors.status?.message}</p>
         </SelectInputStyled>
 
         <Button

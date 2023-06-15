@@ -8,6 +8,8 @@ export interface IButtonStyled
   children: ReactNode;
   type?: "button" | "submit" | "reset";
   backgroundColorHover?: string;
+  onClick?: any;
+  id?: string;
 }
 
 const ButtonStyled = styled.button<IButtonStyled>`

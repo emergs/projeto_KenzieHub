@@ -10,9 +10,11 @@ const Button = ({
   backgroundColorHover,
   width,
   height,
+  id,
 }: IButtonStyled) => {
   return (
     <ButtonStyled
+      id={id}
       type={type}
       color={color}
       backgroundColor={backgroundColor}

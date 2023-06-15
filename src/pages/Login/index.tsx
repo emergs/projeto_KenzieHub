@@ -1,17 +1,16 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Span } from "./style";
 import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { IUserLogin } from "../../Providers/user";
-import Container from "../../components/Container2";
-import Title from "../../components/Title2";
-import Button from "../../components/Button2";
-import Form from "../../components/Form2";
-import Input from "../../components/Input2";
+import Container from "../../components/Container";
+import Title from "../../components/Title";
+import Button from "../../components/Button";
+import Form from "../../components/Form";
 import logo from "../../assets/Logo.svg";
-import InputStyled from "../../components/Input2/styles";
+import InputStyled from "../../components/Input/styles";
 
 const schema = yup.object({
   email: yup
@@ -24,7 +23,11 @@ const schema = yup.object({
 const Login = () => {
   const { userLogin, navigateToRegister } = useContext(UserContext);
 
-  const { handleSubmit, register, formState: { errors } } = useForm<IUserLogin>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<IUserLogin>({
     resolver: yupResolver(schema),
   });
 
@@ -41,10 +44,22 @@ const Login = () => {
 
         <InputStyled>
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="Digite seu email" {...register("email")} />
+          <input
+            type="email"
+            id="email"
+            placeholder="Digite seu email"
+            {...register("email")}
+          />
+          <p>{errors.email?.message}</p>
 
-          <label htmlFor="password">Email</label>
-          <input type="password" id="password" placeholder="Digite sua senha" {...register("password")} />
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+          />
+          <p>{errors.password?.message}</p>
         </InputStyled>
 
         <Button
