@@ -1,24 +1,59 @@
-Esse projeto foi desenvolvido utilizando ReactJS e Typescript.
+# Kenzie Hub 
 
-Para ver mais acesse : https://projeto-kenzie-hub-delta.vercel.app/
+## 📌 Conteúdo
 
-1 - Para utilizar o sistema digite seu usuário e senha;
+- [Sobre](#about)
+- [Tecnologias](#-technology)
+- [Como usar](#-how-to-use)
+- [Scripts](#-scripts)
 
-2 - Caso não tenha cadastro, clique no botão cadastre-se, e você será redirecionado para a tela de cadastro;
+## ✏️ Sobre
 
-3 - Ao terminar de preencher seus dados clique no botão cadastrar e você será redirecionado para a tela de login;
+Esse projeto se trata de um sistema de gerenciamento de habilidades em tecnologia. Onde o usuário pode cadastrar as tecnologias que esta estudando e categorizar quanto ao seu nível de habilidade na categoria.
+[YouTube](https://youtube.com).
 
-4 - Realize seu login e você será redirecionado para a página inicial
 
-5 - Na tela inicial você verá uma lista com todas as tecnologias que você já cadastrou, caso haja alguma
+## 💻 Tecnologias
 
-6  - No canto superior direito tem um botão voltar que retorna para a tela de login
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ReactJS](https://reactjs.org/)
+- [React Hook Form](https://react-hook-form.com/)
+- [React Router Dom v6](https://reactrouter.com/en/main)
+- [React Modal](https://www.npmjs.com/package/react-modal)
+- [yup](https://www.npmjs.com/package/yup)
+- [Toastify](https://www.npmjs.com/package/react-toastify)
+- [Styled-Components](https://styled-components.com/)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
 
-7 - Acima da lista existe um campo onde é exibido o nome e o módulo do usuário logado
+## 🛠️ Como usar
 
-8 - Para inserir uma nova tecnologia clique no botão + no canto direito logo abaixo da área onde é exibido os dados do usuário.
+Instale as dependências e utilize 😃
 
-9 - Ao clicar no botão +, será exibido uma janela modal onde você poderá digitar o nome da tecnologia e selecionar o status (iniciante, intermediário e avançado), após preencher os campos clique no botão cadastrar tecnologias e a tecnologia cadastrada aparecerá na lista
+### Instalação:
 
-10 - Para editar uma tecnologia, clique em cima dela e será exibida uma janela modal onde você poderá alterar o status da tecnologia e em seguida clique no botão salvar alterações. Caso queira excluir a tecnologia clique no botão excluir.
+```bash
+yarn
+```
 
+## ⚙️ Scripts
+
+### `start`
+
+Roda a aplicação em modo de desenvolvimento.
+[http://localhost:3000](http://localhost:3000)
+
+### `build`
+
+Cria a aplicação para produção na pasta `build`.
+
+### `test`
+
+Roda os testes.
+
+---
+
+Para testar a aplicação em ambiente de desenvolvimento acesse : https://projeto-kenzie-hub-delta.vercel.app/
+
+---
+Desenvolvido por [Emerson Gonçalves](https://www.linkedin.com/in/emerson-goncalves-dos-santos/). 
