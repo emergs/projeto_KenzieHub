@@ -12,7 +12,7 @@
 
 Esse projeto se trata de um sistema de gerenciamento de habilidades em tecnologia, onde o usuário pode cadastrar as tecnologias que esta estudando e categorizar quanto ao seu nível de habilidade na categoria.
 
-Veja uma breve demonstração no [YouTube](https://youtu.be/ol7z8LMQNZE).
+Veja uma breve demonstração no <a href="https://youtu.be/ol7z8LMQNZE" target="_blank">YouTube</a>
 
 <a id="technology"></a>
 ## 💻 Tecnologias
@@ -45,7 +45,6 @@ yarn
 ### `start`
 
 Roda a aplicação em modo de desenvolvimento.
-[http://localhost:3000](http://localhost:3000)
 
 ### `build`
 
