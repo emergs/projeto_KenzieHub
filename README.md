@@ -14,7 +14,7 @@ Esse projeto se trata de um sistema de gerenciamento de habilidades em tecnologi
 
 Veja uma breve demonstração no [YouTube](https://youtu.be/ol7z8LMQNZE).
 
-<a id="#technology"></a>
+<a id="technology"></a>
 ## 💻 Tecnologias
 
 - [Vite](https://vitejs.dev/)
