@@ -1,18 +1,20 @@
-# Kenzie Hub 
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/198674256@N02/53023510484/in/dateposted-public/" title="Capturar"><img src="https://live.staticflickr.com/65535/53023510484_bac7f4b319_n.jpg" width="320" height="74" alt="Capturar"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
 ## 📌 Conteúdo
 
 - [Sobre](#about)
-- [Tecnologias](#-technology)
-- [Como usar](#-how-to-use)
-- [Scripts](#-scripts)
+- [Tecnologias](#technology)
+- [Como usar](#how-to-use)
+- [Scripts](#scripts)
 
+<a id="about"></a>
 ## ✏️ Sobre
 
-Esse projeto se trata de um sistema de gerenciamento de habilidades em tecnologia. Onde o usuário pode cadastrar as tecnologias que esta estudando e categorizar quanto ao seu nível de habilidade na categoria.
-[YouTube](https://youtube.com).
+Esse projeto se trata de um sistema de gerenciamento de habilidades em tecnologia, onde o usuário pode cadastrar as tecnologias que esta estudando e categorizar quanto ao seu nível de habilidade na categoria.
 
+Veja uma breve demonstração no [YouTube](https://youtu.be/ol7z8LMQNZE).
 
+<a id="#technology"></a>
 ## 💻 Tecnologias
 
 - [Vite](https://vitejs.dev/)
@@ -26,6 +28,7 @@ Esse projeto se trata de um sistema de gerenciamento de habilidades em tecnologi
 - [Styled-Components](https://styled-components.com/)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
 
+<a id="how-to-use"></a>
 ## 🛠️ Como usar
 
 Instale as dependências e utilize 😃
@@ -36,6 +39,7 @@ Instale as dependências e utilize 😃
 yarn
 ```
 
+<a id="scripts"></a>
 ## ⚙️ Scripts
 
 ### `start`
