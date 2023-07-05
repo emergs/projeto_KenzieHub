@@ -1,4 +1,4 @@
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/198674256@N02/53023510484/in/dateposted-public/" title="Capturar"><img src="https://live.staticflickr.com/65535/53023510484_bac7f4b319_n.jpg" width="320" height="74" alt="Capturar"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/198674256@N02/53023510484/in/dateposted-public/" title="Capturar"><img src="https://live.staticflickr.com/65535/53023510484_bac7f4b319_n.jpg" width="320" height="74" alt="Capturar"/></a>
 
 ## 📌 Conteúdo
 
